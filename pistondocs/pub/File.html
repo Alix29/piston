@@ -1,0 +1,286 @@
+<html xmlns:d="http://www.telparia.com/loganmonkey-doc" xmlns:f="http://www.telparia.com/common-functions">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Logan.File</title>
+      <link rel="stylesheet" type="text/css" href="yui/reset.css">
+      <link rel="stylesheet" type="text/css" href="yui/fonts.css">
+      <link rel="stylesheet" type="text/css" href="css/doc.css">
+      <link rel="stylesheet" type="text/css" href="css/sh_style.css"><script type="text/javascript" src="yui/yahoo.js"></script><script type="text/javascript" src="yui/event.js"></script><script type="text/javascript" src="yui/dom.js"></script><script type="text/javascript" src="js/doc.js"></script><script type="text/javascript" src="js/sh_main.js"></script><script type="text/javascript" src="js/sh_javascript.js"></script></head>
+   <body>
+      <div class="top-section-links"><a class="top-section-link" href="#Constructors">Constructors</a><a class="top-section-link" href="#Properties">Properties</a><a class="top-section-link" href="#Methods">Methods</a></div>
+      <h1>Logan.File</h1>
+      <div class="shortDescription">
+         The File object represents a File.
+         <div xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xhtml="http://www.w3.org/1999/xhtml"></div>
+         It allows you create, read, write, delete or otherwise modify a file.
+         
+      </div><a name="Constructors"></a><h2 class="constructors">Constructors</h2>
+      <table class="section constructor">
+         <tbody>
+            <tr class="top">
+               <td class="expand" rowspan="2"></td>
+               <td class="method"><span class="name">Logan.File</span>(<span class="optional">Object propertyMap?</span>)
+               </td>
+            </tr>
+            <tr class="bottom">
+               <td class="description">
+                  <div class="short">Creates a new File object</div>
+                  <div class="long">
+                     <div class="arguments">Arguments</div>
+                     <ul>
+                        <li><span class="optional">Object propertyMap (optional)</span>
+                           <div>The initial set of <a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xhtml="http://www.w3.org/1999/xhtml" href="#Properties">Properties</a> to set
+                           </div>
+                        </li>
+                     </ul>
+                     <div class="example">Example</div><pre class="sh_javascript">var f = new Logan.File();
+f.path = "text.txt";</pre><div class="example">Example</div><pre class="sh_javascript">var f = new Logan.File({ "path" : "text.txt" });</pre></div>
+               </td>
+            </tr>
+            <tr class="top">
+               <td class="expand" rowspan="2"></td>
+               <td class="method"><span class="name">Logan.File</span>(String path, <span class="optional">Object propertyMap?</span>)
+               </td>
+            </tr>
+            <tr class="bottom">
+               <td class="description">
+                  <div class="short">Creates a new File object with the given path</div>
+                  <div class="long">
+                     <div class="arguments">Arguments</div>
+                     <ul>
+                        <li>String path
+                           <div>The full or relative path to the file</div>
+                        </li>
+                        <li><span class="optional">Object propertyMap (optional)</span>
+                           <div>The initial set of <a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xhtml="http://www.w3.org/1999/xhtml" href="#Properties">Properties</a> to set
+                           </div>
+                        </li>
+                     </ul>
+                     <div class="example">Example</div><pre class="sh_javascript">var f = new Logan.File("test.txt");</pre></div>
+               </td>
+            </tr>
+         </tbody>
+      </table><a name="Properties"></a><h2 class="properties">Properties</h2>
+      <table class="section property">
+         <tbody>
+            <tr class="bottom">
+               <td class="expand"></td>
+               <td class="type">String</td>
+               <td class="name">path</td>
+               <td class="description">The full path to the file
+                  <div class="long">
+                     <div class="validValues">
+                        Valid Values
+                        
+                     </div>
+                     <ul>
+                        <li>null <span class="default">(default)</span></li>
+                        <li>* </li>
+                     </ul>
+                  </div>
+               </td>
+               <td class="readWrite">read+write</td>
+            </tr>
+         </tbody>
+      </table><a name="Methods"></a><h2 class="methods">Methods</h2>
+      <table class="section method">
+         <tbody>
+            <tr class="top">
+               <td class="expand" rowspan="3"></td>
+               <td class="static"></td>
+               <td class="return">Boolean</td>
+               <td class="method"><span class="name">exists</span>()
+               </td>
+            </tr>
+            <tr class="middle">
+               <td class="static">static</td>
+               <td class="return">Boolean</td>
+               <td class="method"><span class="name">exists</span>(String path)
+               </td>
+            </tr>
+            <tr class="bottom">
+               <td colspan="2"></td>
+               <td class="description">
+                  <div class="short">Returns true if the file exists, false otherwise</div>
+                  <div class="long">
+                     <div class="arguments">Arguments</div>
+                     <ul>
+                        <li>None</li>
+                     </ul>
+                     <div class="arguments">Arguments<span class="static"> static</span></div>
+                     <ul>
+                        <li>String path
+                           <div>The full or relative path to the file</div>
+                        </li>
+                     </ul>
+                     <div class="returns">Returns</div>
+                     <ul>
+                        <li>Boolean
+                           <div>true if the file exists, false otherwise</div>
+                        </li>
+                     </ul>
+                     <div class="example">Example</div><pre class="sh_javascript">var f = new Logan.File("test.txt");
+
+f.exists();    // true</pre><div class="example">Example<span class="static"> static</span></div><pre class="sh_javascript">Logan.File.exists("test.txt");    // true</pre></div>
+               </td>
+            </tr>
+            <tr class="top">
+               <td class="expand" rowspan="3"></td>
+               <td class="static"></td>
+               <td class="return">Boolean</td>
+               <td class="method"><span class="name">isDirectory</span>()
+               </td>
+            </tr>
+            <tr class="middle">
+               <td class="static">static</td>
+               <td class="return">Boolean</td>
+               <td class="method"><span class="name">isDirectory</span>(String path)
+               </td>
+            </tr>
+            <tr class="bottom">
+               <td colspan="2"></td>
+               <td class="description">
+                  <div class="short">Returns true if a directory, false otherwise</div>
+                  <div class="long">
+                     <div class="arguments">Arguments</div>
+                     <ul>
+                        <li>None</li>
+                     </ul>
+                     <div class="arguments">Arguments<span class="static"> static</span></div>
+                     <ul>
+                        <li>String path
+                           <div>The path to check.</div>
+                        </li>
+                     </ul>
+                     <div class="returns">Returns</div>
+                     <ul>
+                        <li>Boolean
+                           <div>true if a directory, false otherwise</div>
+                        </li>
+                     </ul>
+                     <div class="example">Example</div><pre class="sh_javascript">var f = new Logan.File("test.txt");
+
+f.isDirectory()        // false</pre><div class="example">Example<span class="static"> static</span></div><pre class="sh_javascript">Logan.File.isDirectory("test.txt");    // false</pre></div>
+               </td>
+            </tr>
+            <tr class="top">
+               <td class="expand" rowspan="3"></td>
+               <td class="static"></td>
+               <td class="return">Boolean</td>
+               <td class="method"><span class="name">isFile</span>()
+               </td>
+            </tr>
+            <tr class="middle">
+               <td class="static">static</td>
+               <td class="return">Boolean</td>
+               <td class="method"><span class="name">isFile</span>(String path)
+               </td>
+            </tr>
+            <tr class="bottom">
+               <td colspan="2"></td>
+               <td class="description">
+                  <div class="short">Returns true if a file, false otherwise</div>
+                  <div class="long">
+                     <div class="arguments">Arguments</div>
+                     <ul>
+                        <li>None</li>
+                     </ul>
+                     <div class="arguments">Arguments<span class="static"> static</span></div>
+                     <ul>
+                        <li>String path
+                           <div>The path to check.</div>
+                        </li>
+                     </ul>
+                     <div class="returns">Returns</div>
+                     <ul>
+                        <li>Boolean
+                           <div>true if a file, false otherwise</div>
+                        </li>
+                     </ul>
+                     <div class="example">Example</div><pre class="sh_javascript">var f = new Logan.File("test.txt");
+
+f.isFile()        // true</pre><div class="example">Example<span class="static"> static</span></div><pre class="sh_javascript">Logan.File.isFile("test.txt");    // true</pre></div>
+               </td>
+            </tr>
+            <tr class="top">
+               <td class="expand" rowspan="3"></td>
+               <td class="static"></td>
+               <td class="return">String</td>
+               <td class="method"><span class="name">readAll</span>()
+               </td>
+            </tr>
+            <tr class="middle">
+               <td class="static">static</td>
+               <td class="return">String</td>
+               <td class="method"><span class="name">readAll</span>(String path)
+               </td>
+            </tr>
+            <tr class="bottom">
+               <td colspan="2"></td>
+               <td class="description">
+                  <div class="short">Will read and return the entire file as a String</div>
+                  <div class="long">
+                     <div class="arguments">Arguments</div>
+                     <ul>
+                        <li>None</li>
+                     </ul>
+                     <div class="arguments">Arguments<span class="static"> static</span></div>
+                     <ul>
+                        <li>String path
+                           <div>The full or relative path to the file</div>
+                        </li>
+                     </ul>
+                     <div class="returns">Returns</div>
+                     <ul>
+                        <li>String
+                           <div>The contents of the file as a String</div>
+                        </li>
+                     </ul>
+                     <div class="example">Example</div><pre class="sh_javascript">var f = new Logan.File("test.txt");
+
+f.readAll();    // contents of test.txt</pre><div class="example">Example<span class="static"> static</span></div><pre class="sh_javascript">Logan.File.readAll("test.txt");    // contents of test.txt</pre></div>
+               </td>
+            </tr>
+            <tr class="top">
+               <td class="expand" rowspan="3"></td>
+               <td class="static"></td>
+               <td class="return">Number</td>
+               <td class="method"><span class="name">size</span>()
+               </td>
+            </tr>
+            <tr class="middle">
+               <td class="static">static</td>
+               <td class="return">Number</td>
+               <td class="method"><span class="name">size</span>(String path)
+               </td>
+            </tr>
+            <tr class="bottom">
+               <td colspan="2"></td>
+               <td class="description">
+                  <div class="short">Returns the size of the file in bytes</div>
+                  <div class="long">
+                     <div class="arguments">Arguments</div>
+                     <ul>
+                        <li>None</li>
+                     </ul>
+                     <div class="arguments">Arguments<span class="static"> static</span></div>
+                     <ul>
+                        <li>String path
+                           <div>The full or relative path to the file</div>
+                        </li>
+                     </ul>
+                     <div class="returns">Returns</div>
+                     <ul>
+                        <li>Number
+                           <div>The size of the file in bytes</div>
+                        </li>
+                     </ul>
+                     <div class="example">Example</div><pre class="sh_javascript">var f = new Logan.File("test.txt");    // Contents: contents of test.txt
+
+f.size();    // 20</pre><div class="example">Example<span class="static"> static</span></div><pre class="sh_javascript">Logan.File.size("test.txt");    // 20</pre></div>
+               </td>
+            </tr>
+         </tbody>
+      </table>
+   </body>
+</html>

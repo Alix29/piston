@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:doc xmlns:d="http://www.telparia.com/loganmonkey-doc"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.telparia.com/loganmonkey-doc doc.xsd"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <name>Logan.HTTPRequest</name>
+    <shortDescription>
+        The HTTPRequest object represents an HTTP request.<div></div>
+        It allows you construct an HTTP request, send the request and receive an HTTP response
+    </shortDescription>
+    <constructors>
+        <constructor>
+            <description>Creates a new HTTPRequest object</description>
+            <arguments>
+                <argument optional="true">
+                    <type>Object</type>
+                    <name>propertyMap</name>
+                    <description>The initial set of <a href="#Properties">Properties</a> to set</description>
+                </argument>
+            </arguments>
+        </constructor>
+    </constructors>
+    <properties>
+        <property readonly="false">
+            <type>String</type>
+            <name>protocol</name>
+            <description>The protocol of the URL</description>
+            <validValue default="true">null</validValue>
+            <validValue>http</validValue>
+            <validValue>https</validValue>
+            <validValue>ftp</validValue>
+            <validValue>ftps</validValue>
+        </property>
+        <property readonly="false">
+            <type>String</type>
+            <name>username</name>
+            <description>The username of the URL</description>
+            <validValue default="true">null</validValue>
+            <validValue>*</validValue>
+        </property>
+        <property readonly="false">
+            <type>String</type>
+            <name>password</name>
+            <description>The password of the URL</description>
+            <validValue default="true">null</validValue>
+            <validValue>*</validValue>
+        </property>
+        <property readonly="false">
+            <type>String</type>
+            <name>host</name>
+            <description>The host address of the URL</description>
+            <validValue default="true">null</validValue>
+            <validValue>*</validValue>
+        </property>
+        <property readonly="false">
+            <type>Number</type>
+            <name>port</name>
+            <description>The port number of the URL</description>
+            <validValue default="true">null</validValue>
+            <validValue>*</validValue>
+        </property>
+        <property readonly="false">
+            <type>String</type>
+            <name>path</name>
+            <description>The path of the URL</description>
+            <validValue default="true">null</validValue>
+            <validValue>*</validValue>
+        </property>
+        <property readonly="false">
+            <type>Object</type>
+            <name>query</name>
+            <description>The query parameters of the URL</description>
+            <validValue default="true">null</validValue>
+            <validValue>{ * : *, ... }</validValue>
+        </property>
+        <property readonly="false">
+            <type>String</type>
+            <name>anchor</name>
+            <description>The anchor of the URL</description>
+            <validValue default="true">null</validValue>
+            <validValue>*</validValue>
+        </property>
+    </properties>
+    <methods>
+        <method>
+            <name>getQueryParameter</name>
+            <description>Returns the value of a query parameter</description>
+            <returns>
+                <type>String</type>
+                <description>The value of the query parameter requested.<div/>null if no such query key exists</description>
+            </returns>
+            <arguments>
+                <argument>
+                    <type>String</type>
+                    <name>key</name>
+                    <description>The key of the query parameter to get</description>
+                </argument>
+            </arguments>
+            <example><![CDATA[
+var u = new Logan.URL("http://google.com/path/index.html?level=47&apple=red");
+
+u.getQueryParameter("level");    // 47]]>
+            </example>
+        </method>
+        <method>
+            <name>setQueryParameter</name>
+            <description>Sets a query parameter</description>
+            <arguments>
+                <argument>
+                    <type>String</type>
+                    <name>key</name>
+                    <description>The key of the query parameter to set</description>
+                </argument>
+                <argument>
+                    <type>String</type>
+                    <name>value</name>
+                    <description>The value you want to set the query key to</description>
+                </argument>
+            </arguments>
+            <example><![CDATA[
+var u = new Logan.URL("http://google.com/path/index.html");
+u.setQueryParameter("level", "47");
+u.setQueryParameter("apple", "red");
+
+u.toString();    // http://google.com/path/index.html?level=47&apple=red]]>
+            </example>
+        </method>
+        <method>
+            <name>unsetQueryParameter</name>
+            <description>Unsets a query parameter</description>
+            <arguments>
+                <argument>
+                    <type>String</type>
+                    <name>key</name>
+                    <description>The key of the query parameter to unset</description>
+                </argument>
+            </arguments>
+            <example><![CDATA[
+var u = new Logan.URL("http://google.com/path/index.html?level=47&apple=red");
+u.unsetQueryParameter("level");
+
+u.toString();    // http://google.com/path/index.html?apple=red]]>
+            </example>
+        </method>
+        <method>
+            <name>toString</name>
+            <description>Returns the full URL as a string</description>
+            <returns>
+                <type>String</type>
+                <description>The full URL as a string.</description>
+            </returns>
+            <arguments></arguments>
+            <example><![CDATA[
+var u = new Logan.URL();
+u.protocol = "http";
+u.host = "google.com";
+u.path = "/path/index.html";
+
+u.toString();    // http://google.com/path/index.html]]>
+            </example>
+        </method>
+    </methods>
+</d:doc>

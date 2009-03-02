@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://piston.googlecode.com/svn/trunk/ns/doc"
+    xmlns:d="http://piston.googlecode.com/svn/trunk/ns/doc">
+    <xs:element name="doc">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+                <xs:element name="shortDescription" type="d:xhtml"/>
+                <xs:element name="longDescription" minOccurs="0" maxOccurs="1" type="d:xhtml"/>
+                <xs:element name="example" minOccurs="0" maxOccurs="unbounded" type="d:xhtml"/>
+                <xs:element name="constructors">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="constructor" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="description" type="d:xhtml"/>
+                                        <xs:element name="arguments" type="d:arguments"/>
+                                        <xs:element name="example" minOccurs="0" maxOccurs="unbounded" type="d:xhtml"/>
+                                    </xs:sequence> 
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="properties">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="property" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="type" type="xs:string"/>
+                                        <xs:element name="name" type="xs:string"/>
+                                        <xs:element name="description" type="d:xhtml"/>
+                                        <xs:element name="validValue" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType mixed="true">
+                                                <xs:attribute name="default" use="optional" type="xs:boolean"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="readonly" type="xs:boolean" use="optional"></xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="methods">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="method" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="name" type="xs:string"/>
+                                        <xs:element name="description" type="d:xhtml"/>
+                                        <xs:element name="returns" minOccurs="0" maxOccurs="1">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="type" type="xs:string"/>
+                                                    <xs:element name="description" type="d:xhtml"/>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="arguments" type="d:arguments" minOccurs="1" maxOccurs="unbounded"/>
+                                        <xs:element name="example" minOccurs="0" maxOccurs="unbounded" type="d:methodExample"/>
+                                    </xs:sequence> 
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="arguments">
+        <xs:sequence>
+            <xs:element name="argument" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="type" type="xs:string"/>
+                        <xs:element name="name" type="xs:string"/>
+                        <xs:element name="description" type="d:xhtml"/>
+                    </xs:sequence>
+                    <xs:attribute name="optional" type="xs:boolean" use="optional"/>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="static" use="optional" type="xs:boolean"/>
+    </xs:complexType>
+    <xs:complexType name="xhtml" mixed="true">
+        <xs:sequence>
+            <xs:any minOccurs="0" maxOccurs="unbounded" processContents="skip"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="methodExample" mixed="true">
+        <xs:sequence>
+            <xs:any minOccurs="0" maxOccurs="unbounded" processContents="skip"/>
+        </xs:sequence>
+        <xs:attribute name="static" use="optional" type="xs:boolean"/>
+    </xs:complexType>
+</xs:schema>
