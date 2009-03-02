@@ -1,0 +1,266 @@
+body
+{
+	font-size: 123.1%;
+	font-family: monospace;
+	padding: 1.0em;
+}
+
+h1,
+h2
+{
+	font-weight: bold;
+}
+
+h1
+{
+	font-size: 167%;
+}
+
+h2
+{
+	font-size: 138.5%;
+}
+
+h2.constructors
+{
+	margin-top: 1.0em;
+}
+
+h2.properties,
+h2.methods,
+h2.events
+{
+	margin-top: 1.5em;
+}
+
+div.top-section-links
+{
+	text-align: right;
+}
+
+div.top-section-links a
+{
+	margin-left: 1.5em;
+}
+
+span.expandLongDescription
+{
+	cursor: pointer;
+	color: blue;
+}
+
+div.longDescription
+{
+	display: none;
+	margin-top: 1.0em;
+}
+
+div.longDescription div.example
+{
+	font-weight: bold;
+	margin-top: 0.5em;
+}
+
+table.section
+{
+	width: 100%;
+}
+
+table.section th,
+table.section td
+{
+	border-collapse: collapse;
+}
+
+table.section th
+{
+	padding: 0 0.4em 0 0.4em;
+	white-space: nowrap;
+	font-weight: bold;
+	vertical-align: bottom;
+}
+
+table.section tr
+{
+	border: 1px solid #666666;
+}
+
+table.section tr.top,
+table.section tr.middle
+{
+	border-bottom: 0;
+}
+
+table.section tr.bottom,
+table.section tr.middle
+{
+	border-top: 0;
+}
+
+table.section td.expand,
+table.section td.expanded
+{
+	border: 1px solid #666666;
+	background-repeat: no-repeat;
+	background-position: top;
+	width: 20px;
+	min-width: 20px;
+	cursor: pointer;
+}
+
+table.section td.expand
+{
+	background-image: url(../images/icon-arrow-right-collapsed.gif);
+}
+
+table.section td.expand:hover
+{
+	background-image: url(../images/icon-arrow-right-collapsed-hover.gif);
+}
+
+table.section td.expanded
+{
+	background-image: url(../images/icon-arrow-right-expanded.gif);
+	background-color: #557788;
+}
+
+table.section td.static
+{
+	font-style: italic;
+	text-align: right;
+	padding-left: 0.5em;
+}
+
+table.section td.return
+{
+	text-align: right;	
+	padding-left: 0.5em;
+}
+
+table.section td.method
+{
+	padding-left: 0.5em;
+	width: 100%;
+}
+
+table.section td.method span.name
+{
+	font-weight: bold;
+}
+
+table.section td.method span.optional
+{
+	color: #0000FF;
+}
+
+table.section td.description div.short
+{
+	padding-left: 0.5em;
+}
+
+table.section td.description div.long
+{
+	display: none;
+	padding-left: 2.0em;
+}
+
+table.section td.description div.long div.returns,
+table.section td.description div.long div.arguments,
+table.section td.description div.long div.example
+{
+	font-weight: bold;
+	margin-top: 0.5em;
+}
+
+table.section td.description div.long div.arguments span.static,
+table.section td.description div.long div.example span.static
+{
+	font-style: italic;
+}
+
+table.section td.description div.long ul li
+{
+	margin-left: 2.0em;
+	list-style-type: disc;
+}
+
+table.section td.description div.long ul li span.optional
+{
+	color: #0000FF;
+}
+
+table.section td.description div.long pre.sh_sourceCode
+{
+	margin-right: 1.0em;
+	margin-left: 1.0em;
+	margin-bottom: 1.0em;
+}
+
+table.property tr.bottom
+{
+	border: 1px solid #666666;
+}
+
+table.property td.type,
+table.property td.name,
+table.property td.description,
+table.property td.readOnly,
+table.property td.readWrite
+{
+	vertical-align: top;
+}
+
+table.property td.type,
+table.property td.name,
+table.property td.description
+{
+	padding-left: 0.5em;
+}
+
+table.property td.readOnly
+{
+	font-style: italic;
+}
+
+table.property td.readWrite
+{
+	
+}
+
+table.property td.description
+{
+	padding-left: 2.0em;
+	width: 100%;
+}
+
+table.property td.type
+{
+	text-align: right;	
+}
+
+table.property td.name
+{
+	font-weight: bold;
+}
+
+table.property td.description div.long div.validValues
+{
+	font-weight: bold;
+	margin-top: 0.5em;
+}
+
+table.section td.description div.long ul li
+{
+	margin-left: 2.0em;
+	list-style-type: disc;
+}
+
+table.section td.description div.long div.longDescription
+{
+	display: block;
+}
+
+table.section td.description div.long ul li span.default
+{
+	font-weight: bold;
+}

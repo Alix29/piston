@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<d:doc xmlns:d="http://piston.googlecode.com/svn/trunk/ns/doc"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://piston.googlecode.com/svn/trunk/pistondocs/xml/doc.xsd"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <name>Logan.File</name>
+    <shortDescription>
+        The File object represents a File.<div></div>
+        It allows you create, read, write, delete or otherwise modify a file.
+    </shortDescription>
+    <constructors>
+        <constructor>
+            <description>Creates a new File object</description>
+            <arguments>
+                <argument optional="true">
+                    <type>Object</type>
+                    <name>propertyMap</name>
+                    <description>The initial set of <a href="#Properties">Properties</a> to set</description>
+                </argument>
+            </arguments>
+            <example><![CDATA[
+var f = new Logan.File();
+f.path = "text.txt";]]>
+            </example>
+            <example><![CDATA[
+var f = new Logan.File({ "path" : "text.txt" });]]>
+            </example>
+        </constructor>
+        <constructor>
+            <description>Creates a new File object with the given path</description>
+            <arguments>
+                <argument>
+                    <type>String</type>
+                    <name>path</name>
+                    <description>The full or relative path to the file</description>
+                </argument>
+                <argument optional="true">
+                    <type>Object</type>
+                    <name>propertyMap</name>
+                    <description>The initial set of <a href="#Properties">Properties</a> to set</description>
+                </argument>
+            </arguments>
+            <example><![CDATA[
+var f = new Logan.File("test.txt");]]>
+            </example>
+        </constructor>
+    </constructors>
+    <properties>
+        <property readonly="false">
+            <type>String</type>
+            <name>path</name>
+            <description>The full path to the file</description>
+            <validValue default="true">null</validValue>
+            <validValue>*</validValue>
+        </property>
+    </properties>
+    <methods>
+        <method>
+            <name>exists</name>
+            <description>Returns true if the file exists, false otherwise</description>
+            <returns>
+                <type>Boolean</type>
+                <description>true if the file exists, false otherwise</description>
+            </returns>
+            <arguments/>
+            <arguments static="true">
+                <argument>
+                    <type>String</type>
+                    <name>path</name>
+                    <description>The full or relative path to the file</description>
+                </argument>
+            </arguments>
+            <example><![CDATA[
+var f = new Logan.File("test.txt");
+
+f.exists();    // true]]>
+            </example>
+            <example static="true"><![CDATA[
+Logan.File.exists("test.txt");    // true]]>
+            </example>            
+        </method>
+        <method>
+            <name>isDirectory</name>
+            <description>Returns true if a directory, false otherwise</description>
+            <returns>
+                <type>Boolean</type>
+                <description>true if a directory, false otherwise</description>
+            </returns>
+            <arguments/>
+            <arguments static="true">
+                <argument>
+                    <type>String</type>
+                    <name>path</name>
+                    <description>The path to check.</description>
+                </argument>
+            </arguments>
+            <example><![CDATA[
+var f = new Logan.File("test.txt");
+
+f.isDirectory()        // false]]>
+            </example>
+            <example static="true"><![CDATA[
+Logan.File.isDirectory("test.txt");    // false]]>
+            </example>
+        </method>
+        <method>
+            <name>isFile</name>
+            <description>Returns true if a file, false otherwise</description>
+            <returns>
+                <type>Boolean</type>
+                <description>true if a file, false otherwise</description>
+            </returns>
+            <arguments/>
+            <arguments static="true">
+                <argument>
+                    <type>String</type>
+                    <name>path</name>
+                    <description>The path to check.</description>
+                </argument>
+            </arguments>
+            <example><![CDATA[
+var f = new Logan.File("test.txt");
+
+f.isFile()        // true]]>
+            </example>
+            <example static="true"><![CDATA[
+Logan.File.isFile("test.txt");    // true]]>
+            </example>
+        </method>
+        <method>
+            <name>readAll</name>
+            <description>Will read and return the entire file as a String</description>
+            <returns>
+                <type>String</type>
+                <description>The contents of the file as a String</description>
+            </returns>
+            <arguments/>
+            <arguments static="true">
+                <argument>
+                    <type>String</type>
+                    <name>path</name>
+                    <description>The full or relative path to the file</description>
+                </argument>
+            </arguments>
+            <example><![CDATA[
+var f = new Logan.File("test.txt");
+
+f.readAll();    // contents of test.txt]]>
+            </example>
+            <example static="true"><![CDATA[
+Logan.File.readAll("test.txt");    // contents of test.txt]]>
+            </example>
+        </method>
+        <method>
+            <name>size</name>
+            <description>Returns the size of the file in bytes</description>
+            <returns>
+                <type>Number</type>
+                <description>The size of the file in bytes</description>
+            </returns>
+            <arguments/>
+            <arguments static="true">
+                <argument>
+                    <type>String</type>
+                    <name>path</name>
+                    <description>The full or relative path to the file</description>
+                </argument>
+            </arguments>
+            <example><![CDATA[
+var f = new Logan.File("test.txt");    // Contents: contents of test.txt
+
+f.size();    // 20]]>
+            </example>
+            <example static="true"><![CDATA[
+Logan.File.size("test.txt");    // 20]]>
+            </example>
+        </method>
+    </methods>
+</d:doc>

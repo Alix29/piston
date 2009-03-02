@@ -1,0 +1,372 @@
+<html xmlns:d="http://www.telparia.com/loganmonkey-doc" xmlns:f="http://www.telparia.com/common-functions">
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Logan.URL</title>
+      <link rel="stylesheet" type="text/css" href="yui/reset.css">
+      <link rel="stylesheet" type="text/css" href="yui/fonts.css">
+      <link rel="stylesheet" type="text/css" href="css/doc.css">
+      <link rel="stylesheet" type="text/css" href="css/sh_style.css"><script type="text/javascript" src="yui/yahoo.js"></script><script type="text/javascript" src="yui/event.js"></script><script type="text/javascript" src="yui/dom.js"></script><script type="text/javascript" src="js/doc.js"></script><script type="text/javascript" src="js/sh_main.js"></script><script type="text/javascript" src="js/sh_javascript.js"></script></head>
+   <body>
+      <div class="top-section-links"><a class="top-section-link" href="#Constructors">Constructors</a><a class="top-section-link" href="#Properties">Properties</a><a class="top-section-link" href="#Methods">Methods</a></div>
+      <h1>Logan.URL</h1>
+      <div class="shortDescription">
+         The URL object represents a URL.
+         <div xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xhtml="http://www.w3.org/1999/xhtml"></div>
+         It allows you parse, construct and manipulate the seperate parts of the URL easily
+         
+      </div><span class="expandLongDescription">
+         (read full description)
+         </span><div class="longDescription">
+         You can pass to the constructor a URL as a string which will parsed automatically
+         <div xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xhtml="http://www.w3.org/1999/xhtml"></div>
+         At that point you can access the individual <a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xhtml="http://www.w3.org/1999/xhtml" href="#Properties">Properties</a> of the object to read or manipulate the URL
+         <div xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xhtml="http://www.w3.org/1999/xhtml"></div>
+         
+         <div class="example">Example</div><pre class="sh_javascript">var u = new Logan.URL("http://google.com:8080/hello/index.html");
+u.host           // google.com
+u.port           // 8080
+
+u.host = "yahoo.com";
+u.toString();    // http://yahoo.com:8080/hello/index.html
+
+u.port = null;
+u.setQueryParameter("level", "47");
+u.toString();    // http://yahoo.com/hello/index.html?level=47</pre></div><a name="Constructors"></a><h2 class="constructors">Constructors</h2>
+      <table class="section constructor">
+         <tbody>
+            <tr class="top">
+               <td class="expand" rowspan="2"></td>
+               <td class="method"><span class="name">Logan.URL</span>(<span class="optional">Object propertyMap?</span>)
+               </td>
+            </tr>
+            <tr class="bottom">
+               <td class="description">
+                  <div class="short">Creates a new URL object</div>
+                  <div class="long">
+                     <div class="arguments">Arguments</div>
+                     <ul>
+                        <li><span class="optional">Object propertyMap (optional)</span>
+                           <div>The initial set of <a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xhtml="http://www.w3.org/1999/xhtml" href="#Properties">Properties</a> to set
+                           </div>
+                        </li>
+                     </ul>
+                     <div class="example">Example</div><pre class="sh_javascript">var u = new Logan.URL();
+u.host = "google.com";
+u.protocol = "http";
+
+u.toString();    // http://google.com</pre><div class="example">Example</div><pre class="sh_javascript">var u = new Logan.URL({ "protocol" : "http", "host" : "google.com" });
+
+u.toString();    // http://google.com</pre></div>
+               </td>
+            </tr>
+            <tr class="top">
+               <td class="expand" rowspan="2"></td>
+               <td class="method"><span class="name">Logan.URL</span>(String url, <span class="optional">Object propertyMap?</span>)
+               </td>
+            </tr>
+            <tr class="bottom">
+               <td class="description">
+                  <div class="short">Creates a new URL object with the given url</div>
+                  <div class="long">
+                     <div class="arguments">Arguments</div>
+                     <ul>
+                        <li>String url
+                           <div>The initial URL to parse</div>
+                        </li>
+                        <li><span class="optional">Object propertyMap (optional)</span>
+                           <div>The initial set of <a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xhtml="http://www.w3.org/1999/xhtml" href="#Properties">Properties</a> to set
+                           </div>
+                        </li>
+                     </ul>
+                     <div class="example">Example</div><pre class="sh_javascript">var u = new Logan.URL("http://google.com");
+u.path = "/hello/index.html";
+
+u.toString();    // http://google.com/hello/index.html</pre><div class="example">Example</div><pre class="sh_javascript">var u = new Logan.URL("http://google.com", { "path" : "/hello/index.html" });
+
+u.toString();    // http://google.com/hello/index.html</pre></div>
+               </td>
+            </tr>
+         </tbody>
+      </table><a name="Properties"></a><h2 class="properties">Properties</h2>
+      <table class="section property">
+         <tbody>
+            <tr class="bottom">
+               <td class="expand"></td>
+               <td class="type">String</td>
+               <td class="name">protocol</td>
+               <td class="description">The protocol of the URL
+                  <div class="long">
+                     <div class="validValues">
+                        Valid Values
+                        
+                     </div>
+                     <ul>
+                        <li>null <span class="default">(default)</span></li>
+                        <li>http </li>
+                        <li>https </li>
+                        <li>ftp </li>
+                        <li>ftps </li>
+                     </ul>
+                  </div>
+               </td>
+               <td class="readWrite">read+write</td>
+            </tr>
+            <tr class="bottom">
+               <td class="expand"></td>
+               <td class="type">String</td>
+               <td class="name">username</td>
+               <td class="description">The username of the URL
+                  <div class="long">
+                     <div class="validValues">
+                        Valid Values
+                        
+                     </div>
+                     <ul>
+                        <li>null <span class="default">(default)</span></li>
+                        <li>* </li>
+                     </ul>
+                  </div>
+               </td>
+               <td class="readWrite">read+write</td>
+            </tr>
+            <tr class="bottom">
+               <td class="expand"></td>
+               <td class="type">String</td>
+               <td class="name">password</td>
+               <td class="description">The password of the URL
+                  <div class="long">
+                     <div class="validValues">
+                        Valid Values
+                        
+                     </div>
+                     <ul>
+                        <li>null <span class="default">(default)</span></li>
+                        <li>* </li>
+                     </ul>
+                  </div>
+               </td>
+               <td class="readWrite">read+write</td>
+            </tr>
+            <tr class="bottom">
+               <td class="expand"></td>
+               <td class="type">String</td>
+               <td class="name">host</td>
+               <td class="description">The host address of the URL
+                  <div class="long">
+                     <div class="validValues">
+                        Valid Values
+                        
+                     </div>
+                     <ul>
+                        <li>null <span class="default">(default)</span></li>
+                        <li>* </li>
+                     </ul>
+                  </div>
+               </td>
+               <td class="readWrite">read+write</td>
+            </tr>
+            <tr class="bottom">
+               <td class="expand"></td>
+               <td class="type">Number</td>
+               <td class="name">port</td>
+               <td class="description">The port number of the URL
+                  <div class="long">
+                     <div class="validValues">
+                        Valid Values
+                        
+                     </div>
+                     <ul>
+                        <li>null <span class="default">(default)</span></li>
+                        <li>* </li>
+                     </ul>
+                  </div>
+               </td>
+               <td class="readWrite">read+write</td>
+            </tr>
+            <tr class="bottom">
+               <td class="expand"></td>
+               <td class="type">String</td>
+               <td class="name">path</td>
+               <td class="description">The path of the URL
+                  <div class="long">
+                     <div class="validValues">
+                        Valid Values
+                        
+                     </div>
+                     <ul>
+                        <li>null <span class="default">(default)</span></li>
+                        <li>* </li>
+                     </ul>
+                  </div>
+               </td>
+               <td class="readWrite">read+write</td>
+            </tr>
+            <tr class="bottom">
+               <td class="expand"></td>
+               <td class="type">Object</td>
+               <td class="name">query</td>
+               <td class="description">The query parameters of the URL
+                  <div class="long">
+                     <div class="validValues">
+                        Valid Values
+                        
+                     </div>
+                     <ul>
+                        <li>null <span class="default">(default)</span></li>
+                        <li>{ * : *, ... } </li>
+                     </ul>
+                  </div>
+               </td>
+               <td class="readWrite">read+write</td>
+            </tr>
+            <tr class="bottom">
+               <td class="expand"></td>
+               <td class="type">String</td>
+               <td class="name">anchor</td>
+               <td class="description">The anchor of the URL
+                  <div class="long">
+                     <div class="validValues">
+                        Valid Values
+                        
+                     </div>
+                     <ul>
+                        <li>null <span class="default">(default)</span></li>
+                        <li>* </li>
+                     </ul>
+                  </div>
+               </td>
+               <td class="readWrite">read+write</td>
+            </tr>
+         </tbody>
+      </table><a name="Methods"></a><h2 class="methods">Methods</h2>
+      <table class="section method">
+         <tbody>
+            <tr class="top">
+               <td class="expand" rowspan="2"></td>
+               <td class="static"></td>
+               <td class="return">String</td>
+               <td class="method"><span class="name">getQueryParameter</span>(String key)
+               </td>
+            </tr>
+            <tr class="bottom">
+               <td colspan="2"></td>
+               <td class="description">
+                  <div class="short">Returns the value of a query parameter</div>
+                  <div class="long">
+                     <div class="arguments">Arguments</div>
+                     <ul>
+                        <li>String key
+                           <div>The key of the query parameter to get</div>
+                        </li>
+                     </ul>
+                     <div class="returns">Returns</div>
+                     <ul>
+                        <li>String
+                           <div>The value of the query parameter requested.
+                              <div xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xhtml="http://www.w3.org/1999/xhtml"></div>null if no such query key exists
+                           </div>
+                        </li>
+                     </ul>
+                     <div class="example">Example</div><pre class="sh_javascript">var u = new Logan.URL("http://google.com/path/index.html?level=47&amp;apple=red");
+
+u.getQueryParameter("level");    // 47</pre></div>
+               </td>
+            </tr>
+            <tr class="top">
+               <td class="expand" rowspan="2"></td>
+               <td class="static"></td>
+               <td class="return">void</td>
+               <td class="method"><span class="name">setQueryParameter</span>(String key, String value)
+               </td>
+            </tr>
+            <tr class="bottom">
+               <td colspan="2"></td>
+               <td class="description">
+                  <div class="short">Sets a query parameter</div>
+                  <div class="long">
+                     <div class="arguments">Arguments</div>
+                     <ul>
+                        <li>String key
+                           <div>The key of the query parameter to set</div>
+                        </li>
+                        <li>String value
+                           <div>The value you want to set the query key to</div>
+                        </li>
+                     </ul>
+                     <div class="returns">Returns</div>
+                     <ul>
+                        <li>void
+                           <div></div>
+                        </li>
+                     </ul>
+                     <div class="example">Example</div><pre class="sh_javascript">var u = new Logan.URL("http://google.com/path/index.html");
+u.setQueryParameter("level", "47");
+u.setQueryParameter("apple", "red");
+
+u.toString();    // http://google.com/path/index.html?level=47&amp;apple=red</pre></div>
+               </td>
+            </tr>
+            <tr class="top">
+               <td class="expand" rowspan="2"></td>
+               <td class="static"></td>
+               <td class="return">void</td>
+               <td class="method"><span class="name">unsetQueryParameter</span>(String key)
+               </td>
+            </tr>
+            <tr class="bottom">
+               <td colspan="2"></td>
+               <td class="description">
+                  <div class="short">Unsets a query parameter</div>
+                  <div class="long">
+                     <div class="arguments">Arguments</div>
+                     <ul>
+                        <li>String key
+                           <div>The key of the query parameter to unset</div>
+                        </li>
+                     </ul>
+                     <div class="returns">Returns</div>
+                     <ul>
+                        <li>void
+                           <div></div>
+                        </li>
+                     </ul>
+                     <div class="example">Example</div><pre class="sh_javascript">var u = new Logan.URL("http://google.com/path/index.html?level=47&amp;apple=red");
+u.unsetQueryParameter("level");
+
+u.toString();    // http://google.com/path/index.html?apple=red</pre></div>
+               </td>
+            </tr>
+            <tr class="top">
+               <td class="expand" rowspan="2"></td>
+               <td class="static"></td>
+               <td class="return">String</td>
+               <td class="method"><span class="name">toString</span>()
+               </td>
+            </tr>
+            <tr class="bottom">
+               <td colspan="2"></td>
+               <td class="description">
+                  <div class="short">Returns the full URL as a string</div>
+                  <div class="long">
+                     <div class="arguments">Arguments</div>
+                     <ul>
+                        <li>None</li>
+                     </ul>
+                     <div class="returns">Returns</div>
+                     <ul>
+                        <li>String
+                           <div>The full URL as a string.</div>
+                        </li>
+                     </ul>
+                     <div class="example">Example</div><pre class="sh_javascript">var u = new Logan.URL();
+u.protocol = "http";
+u.host = "google.com";
+u.path = "/path/index.html";
+
+u.toString();    // http://google.com/path/index.html</pre></div>
+               </td>
+            </tr>
+         </tbody>
+      </table>
+   </body>
+</html>
