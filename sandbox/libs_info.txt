@@ -1,0 +1,200 @@
+environment variables library path when running:
+/mnt/deck/DevLab/libs/nspr-4.7.3/mozilla/nsprpub/build-debug/lib:/mnt/deck/DevLab/libs/tracemonkey-11d992eeca40/js/src/build-debug/dist/lib:/mnt/deck/DevLab/libs/libevent-1.4.9-stable/build-debug/lib:/mnt/deck/DevLab/libs/curl-7.19.3/build-debug/lib:
+
+/------\
+| NSPR |
+\------/
+cd /mnt/deck/DevLab/libs
+
+IF NEED:
+	wget the LATEST from ftp://ftp.mozilla.org/pub/mozilla.org/nspr/releases/
+	gunzip nspr-$NSPR_VERSION.gz
+	tar -xvf nspr-$NSPR_VERSION.tar
+	rm nspr-$NSPR_VERSION.tar
+	cd nspr-$NSPR_VERSION/mozilla/nsprpub
+	mkdir build-debug build-release
+	cd ../../../
+
+cd nspr-$NSPR_VERSION/mozilla/nsprpub
+
+./configure --prefix /mnt/deck/DevLab/libs/nspr-$NSPR_VERSION/mozilla/nsprpub/build-debug
+make
+make install
+make distclean
+./configure --prefix /mnt/deck/DevLab/libs/nspr-$NSPR_VERSION/mozilla/nsprpub/build-release
+make
+make install
+
+debug -> nspr-$NSPR_VERSION/mozilla/nsprpub/build-debug/
+release -> nspr-$NSPR_VERSION/mozilla/nsprpub/build-release/
+
+lib directory -> debug/lib/
+lib link: -lnspr4
+
+include directory -> debug/include/nspr/
+
+
+/-------------\
+| Tracemonkey |
+\-------------/
+cd /mnt/deck/DevLab/libs
+
+IF NEED:
+	visit http://hg.mozilla.org/tracemonkey
+	go to the 'files' link at the top
+	Download the 'bz2' link from the top
+	bunzip2 $TRACEMONKEY_VERSION.bz2
+	tar -xvf $TRACEMONKEY_VERSION.tar
+	rm $TRACEMONKEY_VERSION.tar
+	cd tracemonkey-$TRACEMONKEY_VERSION/js/src/
+	autoconf-2.13
+	mkdir build-debug build-release
+	cd ../../../
+
+cd tracemonkey-$TRACEMONKEY_VERSION/js/src/
+cd build-debug
+../configure --enable-debug --disable-optimize --enable-threadsafe --with-system-nspr --with-nspr-prefix=/mnt/deck/DevLab/libs/nspr-4.7.3/mozilla/nsprpub/build-debug
+make
+cd ../
+cd build-release
+../configure --enable-threadsafe --with-system-nspr --with-nspr-prefix=/mnt/deck/DevLab/libs/nspr-4.7.3/mozilla/nsprpub/dist
+make
+
+debug -> tracemonkey-$TRACEMONKEY_VERSION/js/src/build-debug/dist/
+release -> tracemonkey-$TRACEMONKEY_VERSION/js/src/build-relase/dist/
+
+lib directory -> debug/lib/
+lib link: -lmozjs
+
+include directory -> debug/include/js/
+
+
+
+/----------\
+| libevent |
+\----------/
+cd /mnt/deck/DevLab/libs
+
+IF NEED:
+	visit http://monkey.org/~provos/libevent/
+	Download the latest .tar.gz
+	gunzip $LIBEVENT_VERSION.gz
+	tar -xvf $LIBEVENT_VERSION.tar
+	rm $LIBEVENT_VERSION.tar
+	cd $LIBEVENT_VERSION
+	mkdir build-debug build-release
+	cd ../
+	
+cd $LIBEVENT_VERSION
+./configure --prefix /mnt/deck/DevLab/libs/$LIBEVENT_VERSION/build-debug
+make
+make install
+make distclean
+./configure --prefix /mnt/deck/DevLab/libs/$LIBEVENT_VERSION/build-release
+make
+make install
+
+debug -> $LIBEVENT_VERSION/build-debug/
+release -> $LIBEVENT_VERSION/build-relase/
+
+lib directory -> debug/lib/
+lib link: -levent
+
+include directory -> debug/include/
+
+
+
+/---------\
+| libcurl |
+\---------/
+cd /mnt/deck/DevLab/libs
+
+IF NEED:
+	visit http://curl.haxx.se/download.html
+	Download the latest .tar.bz2
+	bunzip2 $LIBCURL_VERSION.bz2
+	tar -xvf $LIBCURL_VERSION.tar
+	rm $LIBCURL_VERSION.tar
+	cd $LIBCURL_VERSION
+	mkdir build-debug build-release
+	cd ../
+
+cd $LIBCURL_VERSION
+./configure --prefix /mnt/deck/DevLab/libs/curl-7.19.3/build-debug/ --enable-debug --enable-http --enable-ftp --enable-file --disable-ldap --disable-ldaps --enable-dict --enable-telnet --disable-tftp --enable-ipv6 --enable-thread --enable-nonblocking --enable-cookies
+make
+make install
+make distclean
+./configure --prefix /mnt/deck/DevLab/libs/curl-7.19.3/build-debug/ --enable-optimize --enable-http --enable-ftp --enable-file --disable-ldap --disable-ldaps --enable-dict --enable-telnet --disable-tftp --enable-ipv6 --enable-thread --enable-nonblocking --enable-cookies
+make
+make install
+
+debug -> $LIBCURL_VERSION/build-debug/
+release -> $LIBCURL_VERSION/build-relase/
+
+lib directory -> debug/lib/
+lib link: -lcurl
+
+include directory -> debug/include/curl/
+
+
+
+
+
+
+
+
+To build couchdb (make and make install (as root) the build-release above)
+emerge -p icu erlang
+cd DevLab/libs/couchdb-trunk
+./bootstrap
+./configure
+make
+su - root
+make install
+adduser --system --home /usr/local/var/lib/couchdb/ --shell /bin/bash couchdb
+chown couchdb:couchdb /usr/local/var/lib/couchdb/
+chown couchdb:couchdb /usr/local/var/log/couchdb/
+passwd couchdb
+su - root
+su - couchdb
+couchdb
+
+
+
+
+
+
+
+
+
+================== OLD ==================================== OLD ==================
+================== OLD ==================================== OLD ==================
+================== OLD ==================================== OLD ==================
+================== OLD ==================================== OLD ==================
+================== OLD ==================================== OLD ==================
+================== OLD ==================================== OLD ==================
+
+/-----\
+| zmq |
+\-----/
+cd /mnt/deck/DevLab/libs
+
+IF NEED:
+	svn co http://svn.fastmq.org/svn/zeromq/trunk/ zmq-trunk
+	cd zmq-trunk
+	./autogen.sh
+	cd ../
+	
+cd zmq-trunk
+./configure --prefix /mnt/deck/DevLab/libs/zmq-trunk/dist --with-java
+make
+make install
+
+debug -> zmq-trunk/dist/
+release -> zmq-trunk/dist/
+
+lib directory -> debug/lib/
+lib link: -lzmq
+
+include directory -> debug/include/
+

@@ -1,0 +1,49 @@
+Implement the JSEDDebugVariable and JSEDDebugValue
+Part of me thinks this should be on demand.
+When each one is requested, go out and get the rest.
+So when creating need name, type, value, hasChildren
+I guess that's it rofl
+
+Rename. Maybe LoganDebugger?
+
+Support removal and modification of breakpoints
+
+JS_Enumerate needs some special care when being used. I'm not doing this care right now. See docs on JS_Enumerate for details
+
+The jsed plugin should find two available local ports at random and send both to loganmonkey on start
+These are the ports that should be used for this debug instance. This allows multiple debuggers to run at once.
+
+
+
+
+
+
+loganmonkey Debug [C/C++ Local Application]
+    gdb/mi (2/20/09 7:12 PM) (Suspended)
+        Thread [1] (Suspended)
+            1 main() /mnt/deck/../loganmonkey.cpp:46 0x0804b692
+        Thread [2] (Suspended)
+            8 __kernel_vsyscall()  0xffffe410
+            7 epol_wait()  0xb7ae3806
+            6 epoll_dispatch() /mnt/deck/.../epoll.c:208 0xb7e8a172
+			...
+			1 clone()  0xb7ae2fee
+		gdb (2/20/09 7:12 PM)
+		/mnt/deck/DevLab/loganmonkey/loganmonkey/Debug/loganmonkey
+
+Nothing appears in console at all
+
+After terminating the whole thing:
+
+<terminated>loganmonkey Debug [C/C++ Local Application]
+   <terminated>gdb/mi (2/20/09 7:12 PM) (Exited. Exit code = 0.)
+   <terminated, exit value: 0>gdb (2/20/09 7:12 PM)
+   <terminated, exit value: 0>/mnt/deck/DevLab/loganmonkey/loganmonkey/Debug/loganmonkey (2/20/09 7:12 PM)
+
+
+Eclispe Application [Eclipse Application]
+	org.eclipse.equinox.launcher.Main at localhost:42253
+		Thread [main] (Running)
+		Daemon Thread [State Data Manager] (Running)
+		...
+	/opt/sun-jdk-1.6.0.11/bin/java

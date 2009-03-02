@@ -1,0 +1,15 @@
+
+
+
+
+For file/directory, both should have:
+
+isFile()
+isDirectory()
+
+For both the object and as static methods. So you can easily do File.isFile("/tmp") and get false
+
+This way when you do Directory.list("/tmp") as a static (or non-static) and get a list back you can either do:
+if(typeof i=="Directory")
+or you can just do
+if(i.isFile())
