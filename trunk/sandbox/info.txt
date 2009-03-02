@@ -1,0 +1,125 @@
+For FIle object, take a look at : https://developer.mozilla.org/En/SpiderMonkey/File_object
+Especially note how they do the pipe | thing, very interesting
+Also take a peek at: http://code.google.com/p/v8cgi/wiki/API#File_functions
+
+
+https://developer.mozilla.org/En/SpiderMonkey/JSAPI_Reference
+
+
+
+
+
+Reading data from files when converting to strings should support unicode/UTF8
+Maybe also use libiconv or maybe gnome's gtk?  Probably should stick to things like libiconv or icu which is portable
+Use lib: http://icu-project.org/
+
+
+For multi-threading/processing, maybe implement HTML5 web workers:
+http://www.whatwg.org/specs/web-workers/current-work/
+Maybe also look at python's processing lib
+
+
+XML/XSLT/XPATH/XQUERY Options:
+XPath 2.0 and XQuery support - http://xqilla.sourceforge.net/HomePage
+Also has very partial XSLT 2.0 support, but might be the best choice.
+
+libxml and libxslt - http://xmlsoft.org/docs.html
+
+http://xml.apache.org/xalan-c/whatsnew.html
+
+
+For DB Access, use couchdb
+http://wiki.apache.org/couchdb/HTTP_REST_API
+
+CouchDB look at couch_js.c which uses spidermonkey+curl to interface with couchdb
+
+
+For downloading things, use libcurl
+http://curl.haxx.se/libcurl/c/
+
+Build something to scrape the political reign auction house and auto-buy anything under a certain price
+also should e-mail or text message alert me when I have 7 or more cards in my hand (should monitor hand size irrespective of auction house)
+
+
+Thread/Timeout/Interval discussion:
+09:25 < Wes_> 2) Use a watchdog thread with its own context, have it go to sleep and wake up when needed. You will need to be in a request to run any JS_* code in --enable-threads build.  Don't forget to suspend/resume context around 
+              the sleep system call.
+09:38 < Wes_> but the basic flow is
+09:38 < Wes_> beginrequest #1
+09:38 < Wes_> executescript
+09:39 < Wes_>    script calls back into C
+09:39 < Wes_>       C program creates new context and new thread
+09:39 < Wes_>       C function which created thread returns JS_TRUE
+09:39 < Wes_>    control is now back to JS program from execute script
+09:40 < Wes_>    JS program finishes
+09:40 < Wes_> executescript returns
+09:40 < Wes_> endrequest #1
+09:40 < Wes_> new thread's basic flow is
+09:40 < Wes_> PR_CreateThread
+09:40 < Wes_> JS_NewContext
+09:40 < Wes_> suspendrequest(newcx)
+09:40 < Wes_> sleep()
+09:40 < Wes_> resumerequest(newcx)
+09:41 < Wes_> JS_CallFunction (or JS_ExecuteDifferentScript, or, or...)
+09:42 < Wes_> You're also responsible for keeping track of active threads and joining them, etc. Otherwise main thread terminating and then exiting the program can cause subthread to die prematurely
+09:44 < Wes_> sembiance: take a look through http://www.page.ca/~wes/opensource/  ... JSeng 0.1 is your basic script runner (js.c without the REPL) and Thread 0.3 is stable AFAIK.  That stuff is REALLY old, though, but I haven't 
+          published in a long time.  If you use/fix any of it, I'd appreciate patches to wes@page.ca
+09:44 < Sembiance> I mean if the javascript was:   function a() { return 2; }  setTimeout(function() { return a(); }, 5000);  then that javascript that the new thread is gonna exectue needs to have be aware of the previous context's 
+                   global
+09:45 < Wes_> sembiance: yes, they share the same global, there's actually no good way around that.  Good news, though, property accesses in JS are serialized and thread safe.  (Theoretically. If you beat up the new array class across 
+          threads some pretty bad things can happen)
+09:46 < Sembiance> awesome, you've been VERY helpful, I really appreciate it :)
+09:48 < Wes_> Sembiance: Doesn't need to "be aware" of it so much as "will have it by virtue of the API".   Your code can be implemented with my engine something like: | function a() { return 2; }; function delayedRunner() { 
+          Thread.sleep(5); a(); };  var th = new Thread(delayedRunner); th.run(); |
+09:48 < Wes_> Sembiance: No problem. I had a LOT help learning that stuff last year, might as well "give back"
+09:49 < Wes_> Sembiance: BTW, if you wind up using my class, the recommended way to communicate between the running thread and the main program is to set a property on the global 'this' in the running thread, it becomes the variable 
+          which is the thread handle in the main thread. 
+09:49 < Sembiance> well your really helping me out a lot. without your help it would have been several hours of me trying different things, etc. and still might not have got it. finally I may have resorted to posting a message on the 
+                   board and waiting for a response.
+09:49 < Wes_> IIRC. Been about a year since I've looked at that in-depth.  Minor upgrades planned this quarter.
+09:49 < Sembiance> your few minutes of conversation has given me a huge head start :)
+09:50 < Wes_> Sembiance: You're welcome.  If it makes you feel better, it took me a day (with help) to get threads executing, then about 6 weeks of debugging the "fine details" with a lot of help
+09:50 < Sembiance> Wes_: have you seen the activity on the serverjs group?
+09:50 < Wes_> Sembiance: Oh, and take a look at scatter in the js.cpp shell (assuming you're using a recent version of jsapi), it also does threads
+              
+              
+              
+
+
+              
+HTTP
+HTTP.Request
+HTTP.Response
+HTTP.Header
+HTTP.Cookie
+              
+              
+HttpRequest info
+
+
+
+
+Maybe think about making it an HTTPRequest object?
+The same kind that would be available in a web site?
+Thus would have a corresponding HTTPResponse object that would include return data, return headers, etc.
+Oooooo I'm liking this idea :)
+
+Properties:
+String method
+Object postObject
+String|File sendData - used in PUT, UPLOAD, etc. but always sent if present
+Object headers
+userAgent
+
+
+Events:
+receiveData
+receiveHeader
+receiveHeaders - ? cumulative? maybe not do
+complete
+sendData
+
+Methods:
+.setHeader
+.removeHeader
+              
