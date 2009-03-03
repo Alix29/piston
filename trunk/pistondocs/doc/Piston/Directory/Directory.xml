@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://piston.googlecode.com/svn/trunk/ns/doc http://piston.googlecode.com/svn/trunk/pistondocs/xml/doc.xsd"
     xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    <name>Logan.Directory</name>
+    <name>Piston.Directory</name>
     <shortDescription>
         The Directory object represents a Directory.<div></div>
         It allows you list sub files and directories.
@@ -19,11 +19,11 @@
                 </argument>
             </arguments>
             <example><![CDATA[
-var f = new Logan.Directory();
+var f = new Piston.Directory();
 f.path = "/tmp";]]>
             </example>
             <example><![CDATA[
-var f = new Logan.Directory({ "path" : "/tmp" });]]>
+var f = new Piston.Directory({ "path" : "/tmp" });]]>
             </example>
         </constructor>
         <constructor>
@@ -41,7 +41,7 @@ var f = new Logan.Directory({ "path" : "/tmp" });]]>
                 </argument>
             </arguments>
             <example><![CDATA[
-var f = new Logan.Directory("/tmp");]]>
+var f = new Piston.Directory("/tmp");]]>
             </example>
         </constructor>
     </constructors>
@@ -71,12 +71,12 @@ var f = new Logan.Directory("/tmp");]]>
                 </argument>
             </arguments>
             <example><![CDATA[
-var f = new Logan.Directory("/tmp");
+var f = new Piston.Directory("/tmp");
 
 f.exists();    // true]]>
             </example>
             <example static="true"><![CDATA[
-Logan.Directory.exists("/tmp");    // true]]>
+Piston.Directory.exists("/tmp");    // true]]>
             </example>            
         </method>
         <method>
@@ -95,12 +95,12 @@ Logan.Directory.exists("/tmp");    // true]]>
                 </argument>
             </arguments>
             <example><![CDATA[
-var f = new Logan.Directory("/tmp");
+var f = new Piston.Directory("/tmp");
 
 f.isDirectory()        // true]]>
             </example>
             <example static="true"><![CDATA[
-Logan.Directory.isDirectory("/tmp");    // true]]>
+Piston.Directory.isDirectory("/tmp");    // true]]>
             </example>
         </method>
         <method>
@@ -119,12 +119,12 @@ Logan.Directory.isDirectory("/tmp");    // true]]>
                 </argument>
             </arguments>
             <example><![CDATA[
-var f = new Logan.Directory("/tmp");
+var f = new Piston.Directory("/tmp");
 
 f.isFile()        // false]]>
             </example>
             <example static="true"><![CDATA[
-Logan.Directory.isFile("/tmp");    // false]]>
+Piston.Directory.isFile("/tmp");    // false]]>
             </example>
         </method>
     </methods>

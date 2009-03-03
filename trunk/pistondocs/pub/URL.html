@@ -1,14 +1,14 @@
 <html xmlns:d="http://piston.googlecode.com/svn/trunk/ns/doc" xmlns:f="http://piston.googlecode.com/svn/trunk/ns/common">
    <head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <title>Logan.URL</title>
+      <title>Piston.URL</title>
       <link rel="stylesheet" type="text/css" href="yui/reset.css">
       <link rel="stylesheet" type="text/css" href="yui/fonts.css">
       <link rel="stylesheet" type="text/css" href="css/doc.css">
       <link rel="stylesheet" type="text/css" href="css/sh_style.css"><script type="text/javascript" src="yui/yahoo.js"></script><script type="text/javascript" src="yui/event.js"></script><script type="text/javascript" src="yui/dom.js"></script><script type="text/javascript" src="js/pistondocs.js"></script><script type="text/javascript" src="js/sh_main.js"></script><script type="text/javascript" src="js/sh_javascript.js"></script></head>
    <body>
       <div class="top-section-links"><a class="top-section-link" href="#Constructors">Constructors</a><a class="top-section-link" href="#Properties">Properties</a><a class="top-section-link" href="#Methods">Methods</a></div>
-      <h1>Logan.URL</h1>
+      <h1>Piston.URL</h1>
       <div class="shortDescription">
          The URL object represents a URL.
          <div xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xhtml="http://www.w3.org/1999/xhtml"></div>
@@ -22,7 +22,7 @@
          At that point you can access the individual <a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xhtml="http://www.w3.org/1999/xhtml" href="#Properties">Properties</a> of the object to read or manipulate the URL
          <div xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xhtml="http://www.w3.org/1999/xhtml"></div>
          
-         <div class="example">Example</div><pre class="sh_javascript">var u = new Logan.URL("http://google.com:8080/hello/index.html");
+         <div class="example">Example</div><pre class="sh_javascript">var u = new Piston.URL("http://google.com:8080/hello/index.html");
 u.host           // google.com
 u.port           // 8080
 
@@ -36,7 +36,7 @@ u.toString();    // http://yahoo.com/hello/index.html?level=47</pre></div><a nam
          <tbody>
             <tr class="top">
                <td class="expand" rowspan="2"></td>
-               <td class="method"><span class="name">Logan.URL</span>(<span class="optional">Object propertyMap?</span>)
+               <td class="method"><span class="name">Piston.URL</span>(<span class="optional">Object propertyMap?</span>)
                </td>
             </tr>
             <tr class="bottom">
@@ -50,18 +50,18 @@ u.toString();    // http://yahoo.com/hello/index.html?level=47</pre></div><a nam
                            </div>
                         </li>
                      </ul>
-                     <div class="example">Example</div><pre class="sh_javascript">var u = new Logan.URL();
+                     <div class="example">Example</div><pre class="sh_javascript">var u = new Piston.URL();
 u.host = "google.com";
 u.protocol = "http";
 
-u.toString();    // http://google.com</pre><div class="example">Example</div><pre class="sh_javascript">var u = new Logan.URL({ "protocol" : "http", "host" : "google.com" });
+u.toString();    // http://google.com</pre><div class="example">Example</div><pre class="sh_javascript">var u = new Piston.URL({ "protocol" : "http", "host" : "google.com" });
 
 u.toString();    // http://google.com</pre></div>
                </td>
             </tr>
             <tr class="top">
                <td class="expand" rowspan="2"></td>
-               <td class="method"><span class="name">Logan.URL</span>(String url, <span class="optional">Object propertyMap?</span>)
+               <td class="method"><span class="name">Piston.URL</span>(String url, <span class="optional">Object propertyMap?</span>)
                </td>
             </tr>
             <tr class="bottom">
@@ -78,10 +78,10 @@ u.toString();    // http://google.com</pre></div>
                            </div>
                         </li>
                      </ul>
-                     <div class="example">Example</div><pre class="sh_javascript">var u = new Logan.URL("http://google.com");
+                     <div class="example">Example</div><pre class="sh_javascript">var u = new Piston.URL("http://google.com");
 u.path = "/hello/index.html";
 
-u.toString();    // http://google.com/hello/index.html</pre><div class="example">Example</div><pre class="sh_javascript">var u = new Logan.URL("http://google.com", { "path" : "/hello/index.html" });
+u.toString();    // http://google.com/hello/index.html</pre><div class="example">Example</div><pre class="sh_javascript">var u = new Piston.URL("http://google.com", { "path" : "/hello/index.html" });
 
 u.toString();    // http://google.com/hello/index.html</pre></div>
                </td>
@@ -267,7 +267,7 @@ u.toString();    // http://google.com/hello/index.html</pre></div>
                            </div>
                         </li>
                      </ul>
-                     <div class="example">Example</div><pre class="sh_javascript">var u = new Logan.URL("http://google.com/path/index.html?level=47&amp;apple=red");
+                     <div class="example">Example</div><pre class="sh_javascript">var u = new Piston.URL("http://google.com/path/index.html?level=47&amp;apple=red");
 
 u.getQueryParameter("level");    // 47</pre></div>
                </td>
@@ -299,7 +299,7 @@ u.getQueryParameter("level");    // 47</pre></div>
                            <div></div>
                         </li>
                      </ul>
-                     <div class="example">Example</div><pre class="sh_javascript">var u = new Logan.URL("http://google.com/path/index.html");
+                     <div class="example">Example</div><pre class="sh_javascript">var u = new Piston.URL("http://google.com/path/index.html");
 u.setQueryParameter("level", "47");
 u.setQueryParameter("apple", "red");
 
@@ -330,7 +330,7 @@ u.toString();    // http://google.com/path/index.html?level=47&amp;apple=red</pr
                            <div></div>
                         </li>
                      </ul>
-                     <div class="example">Example</div><pre class="sh_javascript">var u = new Logan.URL("http://google.com/path/index.html?level=47&amp;apple=red");
+                     <div class="example">Example</div><pre class="sh_javascript">var u = new Piston.URL("http://google.com/path/index.html?level=47&amp;apple=red");
 u.unsetQueryParameter("level");
 
 u.toString();    // http://google.com/path/index.html?apple=red</pre></div>
@@ -358,7 +358,7 @@ u.toString();    // http://google.com/path/index.html?apple=red</pre></div>
                            <div>The full URL as a string.</div>
                         </li>
                      </ul>
-                     <div class="example">Example</div><pre class="sh_javascript">var u = new Logan.URL();
+                     <div class="example">Example</div><pre class="sh_javascript">var u = new Piston.URL();
 u.protocol = "http";
 u.host = "google.com";
 u.path = "/path/index.html";
