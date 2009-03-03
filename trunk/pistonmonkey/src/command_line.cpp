@@ -18,22 +18,19 @@ char * command_line_handle(int argc, char ** argv)
 	static struct option const long_options[] =
 	{
 		{ "help",   0, 0, 'h' },
-		{ "jsed",   0, 0, 'j' },
-		{ "waitfordebug",   0, 0, 'w' },
+		{ "enableDebugger",   0, 0, 'd' },
 		{ NULL,     0, NULL, 0 }
 	};
 
-	while((c=getopt_long(argc, argv, "hjw", long_options, NULL))!=-1)
+	while((c=getopt_long(argc, argv, "hd", long_options, NULL))!=-1)
 	{
 		switch(c)
 		{
 			case 'h':
 				command_line_usage(programName, EXIT_SUCCESS);
 				break;
-			case 'j':
+			case 'd':
 				gDebuggerEnabled = true;
-				break;
-			case 'w':
 				gWaitingForDebugger = true;
 				break;
 			default:
@@ -53,11 +50,10 @@ char * command_line_handle(int argc, char ** argv)
 void command_line_usage(char * program_name, int status)
 {
       printf("Usage: %s [OPTION]... FILE\n", program_name);
-      printf("Runs the FILE as pistonmonkey JavaScript.\n\n");
+      printf("Runs the FILE as piston JavaScript.\n\n");
       printf("Options:\n");
       printf("      -h (--help)             display this help and exit\n");
-      printf("      -j (--jsed)             run in 'jsed' mode. allows eclipse javascript debugging\n");
-      printf("      -w (--waitfordebug)     wait for the jsed debugger to attach before executing script\n");
+      printf("      -j (--enableDebugger)   enables the debugger. allows eclipse javascript debugging\n");
 
       exit(status);
 }
