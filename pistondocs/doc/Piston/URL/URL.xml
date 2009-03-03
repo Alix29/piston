@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://piston.googlecode.com/svn/trunk/ns/doc http://piston.googlecode.com/svn/trunk/pistondocs/xml/doc.xsd"
     xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    <name>Logan.URL</name>
+    <name>Piston.URL</name>
     <shortDescription>
         The URL object represents a URL.<div></div>
         It allows you parse, construct and manipulate the seperate parts of the URL easily
@@ -13,7 +13,7 @@
         At that point you can access the individual <a href="#Properties">Properties</a> of the object to read or manipulate the URL<div></div>
     </longDescription>
     <example><![CDATA[
-var u = new Logan.URL("http://google.com:8080/hello/index.html");
+var u = new Piston.URL("http://google.com:8080/hello/index.html");
 u.host           // google.com
 u.port           // 8080
 
@@ -35,14 +35,14 @@ u.toString();    // http://yahoo.com/hello/index.html?level=47]]>
                 </argument>
             </arguments>
             <example><![CDATA[
-var u = new Logan.URL();
+var u = new Piston.URL();
 u.host = "google.com";
 u.protocol = "http";
 
 u.toString();    // http://google.com]]>
             </example>
             <example><![CDATA[
-var u = new Logan.URL({ "protocol" : "http", "host" : "google.com" });
+var u = new Piston.URL({ "protocol" : "http", "host" : "google.com" });
 
 u.toString();    // http://google.com]]>
             </example>
@@ -62,13 +62,13 @@ u.toString();    // http://google.com]]>
                 </argument>
             </arguments>
             <example><![CDATA[
-var u = new Logan.URL("http://google.com");
+var u = new Piston.URL("http://google.com");
 u.path = "/hello/index.html";
 
 u.toString();    // http://google.com/hello/index.html]]>
             </example>
             <example><![CDATA[
-var u = new Logan.URL("http://google.com", { "path" : "/hello/index.html" });
+var u = new Piston.URL("http://google.com", { "path" : "/hello/index.html" });
 
 u.toString();    // http://google.com/hello/index.html]]>
             </example>
@@ -151,7 +151,7 @@ u.toString();    // http://google.com/hello/index.html]]>
                 </argument>
             </arguments>
             <example><![CDATA[
-var u = new Logan.URL("http://google.com/path/index.html?level=47&apple=red");
+var u = new Piston.URL("http://google.com/path/index.html?level=47&apple=red");
 
 u.getQueryParameter("level");    // 47]]>
             </example>
@@ -172,7 +172,7 @@ u.getQueryParameter("level");    // 47]]>
                 </argument>
             </arguments>
             <example><![CDATA[
-var u = new Logan.URL("http://google.com/path/index.html");
+var u = new Piston.URL("http://google.com/path/index.html");
 u.setQueryParameter("level", "47");
 u.setQueryParameter("apple", "red");
 
@@ -190,7 +190,7 @@ u.toString();    // http://google.com/path/index.html?level=47&apple=red]]>
                 </argument>
             </arguments>
             <example><![CDATA[
-var u = new Logan.URL("http://google.com/path/index.html?level=47&apple=red");
+var u = new Piston.URL("http://google.com/path/index.html?level=47&apple=red");
 u.unsetQueryParameter("level");
 
 u.toString();    // http://google.com/path/index.html?apple=red]]>
@@ -205,7 +205,7 @@ u.toString();    // http://google.com/path/index.html?apple=red]]>
             </returns>
             <arguments></arguments>
             <example><![CDATA[
-var u = new Logan.URL();
+var u = new Piston.URL();
 u.protocol = "http";
 u.host = "google.com";
 u.path = "/path/index.html";

@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://piston.googlecode.com/svn/trunk/ns/doc http://piston.googlecode.com/svn/trunk/pistondocs/xml/doc.xsd"
     xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    <name>Logan.File</name>
+    <name>Piston.File</name>
     <shortDescription>
         The File object represents a File.<div></div>
         It allows you create, read, write, delete or otherwise modify a file.
@@ -19,11 +19,11 @@
                 </argument>
             </arguments>
             <example><![CDATA[
-var f = new Logan.File();
+var f = new Piston.File();
 f.path = "text.txt";]]>
             </example>
             <example><![CDATA[
-var f = new Logan.File({ "path" : "text.txt" });]]>
+var f = new Piston.File({ "path" : "text.txt" });]]>
             </example>
         </constructor>
         <constructor>
@@ -41,7 +41,7 @@ var f = new Logan.File({ "path" : "text.txt" });]]>
                 </argument>
             </arguments>
             <example><![CDATA[
-var f = new Logan.File("test.txt");]]>
+var f = new Piston.File("test.txt");]]>
             </example>
         </constructor>
     </constructors>
@@ -71,12 +71,12 @@ var f = new Logan.File("test.txt");]]>
                 </argument>
             </arguments>
             <example><![CDATA[
-var f = new Logan.File("test.txt");
+var f = new Piston.File("test.txt");
 
 f.exists();    // true]]>
             </example>
             <example static="true"><![CDATA[
-Logan.File.exists("test.txt");    // true]]>
+Piston.File.exists("test.txt");    // true]]>
             </example>            
         </method>
         <method>
@@ -95,12 +95,12 @@ Logan.File.exists("test.txt");    // true]]>
                 </argument>
             </arguments>
             <example><![CDATA[
-var f = new Logan.File("test.txt");
+var f = new Piston.File("test.txt");
 
 f.isDirectory()        // false]]>
             </example>
             <example static="true"><![CDATA[
-Logan.File.isDirectory("test.txt");    // false]]>
+Piston.File.isDirectory("test.txt");    // false]]>
             </example>
         </method>
         <method>
@@ -119,12 +119,12 @@ Logan.File.isDirectory("test.txt");    // false]]>
                 </argument>
             </arguments>
             <example><![CDATA[
-var f = new Logan.File("test.txt");
+var f = new Piston.File("test.txt");
 
 f.isFile()        // true]]>
             </example>
             <example static="true"><![CDATA[
-Logan.File.isFile("test.txt");    // true]]>
+Piston.File.isFile("test.txt");    // true]]>
             </example>
         </method>
         <method>
@@ -143,12 +143,12 @@ Logan.File.isFile("test.txt");    // true]]>
                 </argument>
             </arguments>
             <example><![CDATA[
-var f = new Logan.File("test.txt");
+var f = new Piston.File("test.txt");
 
 f.readAll();    // contents of test.txt]]>
             </example>
             <example static="true"><![CDATA[
-Logan.File.readAll("test.txt");    // contents of test.txt]]>
+Piston.File.readAll("test.txt");    // contents of test.txt]]>
             </example>
         </method>
         <method>
@@ -167,12 +167,12 @@ Logan.File.readAll("test.txt");    // contents of test.txt]]>
                 </argument>
             </arguments>
             <example><![CDATA[
-var f = new Logan.File("test.txt");    // Contents: contents of test.txt
+var f = new Piston.File("test.txt");    // Contents: contents of test.txt
 
 f.size();    // 20]]>
             </example>
             <example static="true"><![CDATA[
-Logan.File.size("test.txt");    // 20]]>
+Piston.File.size("test.txt");    // 20]]>
             </example>
         </method>
     </methods>
