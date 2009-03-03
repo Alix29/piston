@@ -37,10 +37,10 @@ Each of these folders is an eclipse project.
   * You can now run pistonmonkey or debug javascript with it with the debugger.
 
 *pistondebugger*
+
 First option. Take the pistondebugger/out/plugins/pistondebugger_1.0.0.jar and put it in your eclipse/dropins/ directory.
 
 Again, put that jar into the 'dropins' folder of where your eclipse application is.
-
 
 Second option, run from the source (allows debugging):
   * To 'run' the piston debugger (an eclipse plugin) you'll need to have the 'Eclipse Plugin-in Development Environment' installed in your Eclipse.
