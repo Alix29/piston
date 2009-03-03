@@ -1,7 +1,7 @@
 #summary Instructions on how to build the source
 
 *WARNING*
-This stuff isn't polished for wide public consumption. So there are no easy configure scripts or easy ways to point at an update site way to install the eclipse plugin. Sorry.
+This stuff isn't polished for wide public consumption. So there are no easy configure scripts. Sorry.
 
 *REQUIREMENTS*
 You must have Eclipse 3.4.1
@@ -37,6 +37,12 @@ Each of these folders is an eclipse project.
   * You can now run pistonmonkey or debug javascript with it with the debugger.
 
 *pistondebugger*
+First option. Take the pistondebugger/out/plugins/pistondebugger_1.0.0.jar and put it in your eclipse/dropins/ directory.
+
+Again, put that jar into the 'dropins' folder of where your eclipse application is.
+
+
+Second option, run from the source (allows debugging):
   * To 'run' the piston debugger (an eclipse plugin) you'll need to have the 'Eclipse Plugin-in Development Environment' installed in your Eclipse.
     * Menu: Help->Software Updates, go to the 'Available Software' tab
     * Expand to and check this: Ganymede Update Site->Java Development->Eclipse Plugin-in Development Environment
