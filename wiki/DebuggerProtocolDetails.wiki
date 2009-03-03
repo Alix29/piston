@@ -1,16 +1,19 @@
 #summary Details of the protocol between debugger and javascript
 
-= Introduction =
+= *WARNING* =
+I created piston and this debugger to accomplish what `*i*` needed.
+
+Although I tried to make it generic and potentially usable by others, there are some ugly bits and not very much polish. I didn't really intend to release this when I coded it. You have been warned.
+
+== Introduction ==
 
 This page details the protocol used to communicate between the eclipse debugger and the javascript app.
 
 When I refer to 'debugger' I'm talking about the Eclipse Debugger Plugin.
 When I refer to 'piston' I refer to the javascript app (pistonmonkey in this projects case)
 
-== *WARNING* ==
-I created this to do what `*i*` needed. Although I tried to make it generic and potentially usable by others, this was all tailored to meet my needs. So don't expect lawn mowing robots here.
 
-= Overview =
+== Overview ==
 
 It starts in Eclipse:
   # Menu: Run->Debug Configurations...
