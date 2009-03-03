@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<d:doc xmlns:d="http://www.telparia.com/loganmonkey-doc"
+<d:doc xmlns:d="http://piston.googlecode.com/svn/trunk/ns/doc"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.telparia.com/loganmonkey-doc file:/mnt/deck/DevLab/loganmonkey/loganmonkey-docs/xml/doc.xsd"
+    xsi:schemaLocation="http://piston.googlecode.com/svn/trunk/ns/doc http://piston.googlecode.com/svn/trunk/pistondocs/xml/doc.xsd"
     xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <name>Logan.URL</name>
     <shortDescription>
