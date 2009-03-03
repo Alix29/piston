@@ -33,6 +33,8 @@ Each of these folders is an eclipse project.
     * This directory should point to the location where each of the libs libs and include files can be found
     * These may be installed on your system (/usr/local or /usr/lib) or you can download and build them yourself in any directory you want (This is what I do)
     * To build them yourself, follow the steps: http://piston.googlecode.com/svn/trunk/sandbox/libs_info.txt
+  * Once you get the 'debug' folders pointed to the right place for each of the needed items, doing a 'Project->Clean' should result in a build with zero errors. Woot!
+  * You can now run pistonmonkey or debug javascript with it with the debugger.
 
 *pistondebugger*
   * To 'run' the piston debugger (an eclipse plugin) you'll need to have the 'Eclipse Plugin-in Development Environment' installed in your Eclipse.
