@@ -1,14 +1,33 @@
 #summary Instructions on how to build the source
 
-*WARNING* YOU MUST HAVE ECLIPSE 3.4.1 INSTALLED TO BUILD
+*WARNING*
+This stuff isn't polished for wide public consumption. So there are no easy configure scripts or easy ways to point at an update site way to install the eclipse plugin. Sorry.
+
+*REQUIREMENTS*
+You must have Eclipse 3.4.1
 You must also be running Java 6 or higher
 
-First go to the Source tab and do an svn checkout of the source.
+*DETAILS*
+  * Open Eclipse, create a new workspace.
+  * Go to Window->Open Perspective->Other (Choose SVN Repository Exporing)
+  * Add a new repository: http://piston.googlecode.com/svn/trunk/
+  * Browse to trunk and find the four folders:
+    * pistondebugger - The actual eclipse plugin code for debugging javascript in eclipse
+    * pistonmonkey - C++ app that embeds tracemonkey and supports being debugged
+    * pistondocs - Piston's available JS API's are documented here. See pub/index.html
+    * sandbox - A collection of assorted stuff
+  * Select these four folders, right click and choose 'Check Out'
 
-There are several folders:
-  * pistondebugger - The actual eclipse plugin code for debugging javascript in eclipse
-  * pistonmonkey - C++ app that embeds tracemonkey and supports being debugged
-  * pistondocs - Piston's available JS API's are documented here. See pub/index.html
-  * sandbox - A collection of assorted stuff
+Each of these folders is an eclipse project.
 
-MORE COMING SOON...
+*pistondebugger*
+  * To 'run' the piston debugger (an eclipse plugin) you'll need to have the 'Eclipse Plugin-in Development Environment' installed in your Eclipse.
+    * Menu: Help->Software Updates, go to the 'Available Software' tab
+    * Expand to and check this: Ganymede Update Site->Java Development->Eclipse Plugin-in Development Environment
+    * Click 'Install...' on the right. Install any needed pre-reqs, restart eclipse.
+  * Window->Open Perspective->Other (Plugin-in Development)
+  * Select the pistondebugger project    
+  * With any luck this project won't have an build errors in the 'Problems' view (Window->Show View->Problems)
+  * Window->Run Configurations...
+  * Select the 'Piston Debugger' under the 'Eclipse Application' category. Hit Run
+  * With luck another eclipse will start. And now you can run the debugger. See the Overview on DebuggerProtocolDetails
