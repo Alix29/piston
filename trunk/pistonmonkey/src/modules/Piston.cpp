@@ -37,7 +37,11 @@ JSObject * 	Piston_init(JSContext * cx, JSObject * parentObject)
 	if(piston==0)
 		return 0;
 
-	js_run_script("/mnt/deck/DevLab/pistonmonkey/pistonmonkey/js/URL.js", cx, piston);
+	char buf[8192];
+
+	sprintf(buf, "%sURL.js", JS_DIRECTORY_PATH);
+	js_run_script(buf, cx, piston);
+
 	File_init(cx, piston);
 	Directory_init(cx, piston);
 

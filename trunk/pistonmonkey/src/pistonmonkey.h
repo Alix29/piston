@@ -7,4 +7,6 @@ extern bool gRunning;
 extern bool gDebuggerEnabled;
 extern bool gWaitingForDebugger;
 
+#define JS_DIRECTORY_PATH "/mnt/deck/DevLab/piston/pistonmonkey/js/"
+
 #endif /* PISTONMONKEY_H_ */
