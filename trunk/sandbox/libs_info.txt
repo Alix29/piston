@@ -37,16 +37,11 @@ include directory -> debug/include/nspr/
 /-------------\
 | Tracemonkey |
 \-------------/
-cd /mnt/deck/DevLab/libs
+cd /mnt/deck/DevLab/libs/tracemonkey
 
 IF NEED:
-	visit http://hg.mozilla.org/tracemonkey
-	go to the 'files' link at the top
-	Download the 'bz2' link from the top
-	bunzip2 $TRACEMONKEY_VERSION.bz2
-	tar -xvf $TRACEMONKEY_VERSION.tar
-	rm $TRACEMONKEY_VERSION.tar
-	cd tracemonkey-$TRACEMONKEY_VERSION/js/src/
+	hg clone http://hg.mozilla.org/tracemonkey
+	cd tracemonkey/js/src/
 	autoconf-2.13
 	mkdir build-debug build-release
 	cd ../../../
