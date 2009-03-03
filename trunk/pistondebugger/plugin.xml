@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   	<extension point="org.eclipse.help.contexts">
+    	<contexts file="contexts.xml"></contexts>
+   	</extension>
+   	<extension point="org.eclipse.debug.core.launchConfigurationTypes">
+   		<launchConfigurationType
+           delegate="piston.debugger.PistonLaunchDelegate"
+           id="piston.debugger.PistonLaunchConfigurationType"
+           modes="run, debug"
+           name="Piston Compatible App"
+           public="true"></launchConfigurationType>
+   	</extension>
+   	<extension point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+	    <launchConfigurationTabGroup
+	        class="piston.debugger.ui.PistonLaunchConfigurationTabGroup"
+	        description="Launch Piston Compatible App"
+	        id="piston.debugger.PistonLaunchConfigurationTabGroup"
+	        type="piston.debugger.PistonLaunchConfigurationType">
+	        <launchMode mode="debug" perspective="org.eclipse.debug.ui.DebugPerspective"/>
+	        <launchMode mode="run"/>
+	    </launchConfigurationTabGroup>
+	</extension>
+</plugin>
