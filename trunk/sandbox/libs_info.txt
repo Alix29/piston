@@ -1,5 +1,9 @@
-environment variables library path when running:
-/mnt/deck/DevLab/libs/nspr-4.7.3/mozilla/nsprpub/build-debug/lib:/mnt/deck/DevLab/libs/tracemonkey-11d992eeca40/js/src/build-debug/dist/lib:/mnt/deck/DevLab/libs/libevent-1.4.9-stable/build-debug/lib:/mnt/deck/DevLab/libs/curl-7.19.3/build-debug/lib:
+These steps detail how to check out and build the libs that pistonmonkey needs.
+
+Replace /mnt/deck/DevLab/libs with with the directory you want to build the libs in. This can be anywhere.
+After you've build each one you'll noice a "debug ->" line, this is where you need to symlink to for the libs/<package>/<debug> folder.
+So for curl: cd pistonmonkey/libs/curl && ln -s /path/to/curl/build-debug/ debug
+Notice that the symlink name is debug but points to build-debug.
 
 /------\
 | NSPR |
@@ -41,6 +45,7 @@ cd /mnt/deck/DevLab/libs/tracemonkey
 
 IF NEED:
 	hg clone http://hg.mozilla.org/tracemonkey
+	GO WATCH A MOVIE WHILE WAITING FOR THE ABOVE COMMAND TO FINISH
 	cd tracemonkey/js/src/
 	autoconf-2.13
 	mkdir build-debug build-release
@@ -136,6 +141,25 @@ include directory -> debug/include/curl/
 
 
 
+environment variables library path when running:
+/mnt/deck/DevLab/libs/nspr-4.7.3/mozilla/nsprpub/build-debug/lib:/mnt/deck/DevLab/libs/tracemonkey-11d992eeca40/js/src/build-debug/dist/lib:/mnt/deck/DevLab/libs/libevent-1.4.9-stable/build-debug/lib:/mnt/deck/DevLab/libs/curl-7.19.3/build-debug/lib:
+
+
+
+
+
+
+
+
+
+================== OLD ==================================== OLD ==================
+================== OLD ==================================== OLD ==================
+================== OLD ==================================== OLD ==================
+================== OLD ==================================== OLD ==================
+================== OLD ==================================== OLD ==================
+================== OLD ==================================== OLD ==================
+
+
 
 
 To build couchdb (make and make install (as root) the build-release above)
@@ -154,20 +178,6 @@ su - root
 su - couchdb
 couchdb
 
-
-
-
-
-
-
-
-
-================== OLD ==================================== OLD ==================
-================== OLD ==================================== OLD ==================
-================== OLD ==================================== OLD ==================
-================== OLD ==================================== OLD ==================
-================== OLD ==================================== OLD ==================
-================== OLD ==================================== OLD ==================
 
 /-----\
 | zmq |
