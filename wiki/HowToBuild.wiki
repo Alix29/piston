@@ -6,6 +6,7 @@ This stuff isn't polished for wide public consumption. So there are no easy conf
 *REQUIREMENTS*
 You must have Eclipse 3.4.1
 You must also be running Java 6 or higher
+You must have Aptana installed (only used for handling UI syntax highlighting, jumping to lines in the editor and placing breakpoints visually. some day I may write my own stuff here... maybe)
 
 *DETAILS*
   * Open Eclipse, create a new workspace.
