@@ -12,13 +12,27 @@ You must also be running Java 6 or higher
   * Go to Window->Open Perspective->Other (Choose SVN Repository Exporing)
   * Add a new repository: http://piston.googlecode.com/svn/trunk/
   * Browse to trunk and find the four folders:
-    * pistondebugger - The actual eclipse plugin code for debugging javascript in eclipse
     * pistonmonkey - C++ app that embeds tracemonkey and supports being debugged
+    * pistondebugger - The actual eclipse plugin code for debugging javascript in eclipse
     * pistondocs - Piston's available JS API's are documented here. See pub/index.html
     * sandbox - A collection of assorted stuff
   * Select these four folders, right click and choose 'Check Out'
 
 Each of these folders is an eclipse project.
+
+*pistonmonkey*
+  * To build this you'll need the 'Eclipse C/C++ Development Tools' and Platform plugins installed
+    * Menu: Help->Software Updates, go to the 'Available Software' tab
+    * Expand to and check this: Ganymede Update Site->C and C++ Development
+    * Click 'Install...' on the right. Install any needed pre-reqs, restart eclipse.
+  * Window->Open Perspective->Other (C/C++)
+  * At this point you probably have a large number of build errors in the 'Problems' view (Window->Show View->Problems)
+  * Locate pistonmonkey/libs folder
+    * Notice you have four sub directories, curl, libevent, nspr, tracemonkey
+    * Each one of these needs a 'debug' directory in it
+    * This directory should point to the location where each of the libs libs and include files can be found
+    * These may be installed on your system (/usr/local or /usr/lib) or you can download and build them yourself in any directory you want (This is what I do)
+    * To build them yourself, follow the steps: http://piston.googlecode.com/svn/trunk/sandbox/libs_info.txt
 
 *pistondebugger*
   * To 'run' the piston debugger (an eclipse plugin) you'll need to have the 'Eclipse Plugin-in Development Environment' installed in your Eclipse.
