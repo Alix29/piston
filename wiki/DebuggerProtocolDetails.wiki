@@ -40,6 +40,8 @@ http://localhost:7580/messageName
 Although we use a 'POST' the actual content isn't form URL encoded right now.
 It's just a bunch of \n seperated values (with a trailing \n)
 
-|| *Message Name* || *Sent From* || *Parameters* || *Description* ||
+|| *Message Name* || *Sent From* || *Data* || *Description* ||
 || breakpoint_set || debugger || `<filename>\n<line num>\n` || Sent whenever a breakpoint is set in the debugger. When the debugger first starts it will send one of these for each pre-existing breakpoint before launching ||
 || start || debugger || || Sent when the debugger is done setting initial breakpoints and wants piston to start executing javascript ||
+|| thread_created || piston || `<thread name>\n<thread num>` || Sent whenever a new thread is created in piston. This maps to a JSContext in spidermonkey. You must send at least one of these for the 'Main' thread. The thread num should increment for each new thread, starting at zero ||
+|| breakpoint_reached || piston || `<thread num>\n<filename>\n<line num>\n` || Sent to the debugger whenever a breakpoint is reached. Execution is paused in piston until the debugger sends a command in the future to step or continue. The filename should be a full path that the debugger can resolve regardless of working directory. Both sides should use innodes to compare files rather than paths due to symlinks, etc. ||
