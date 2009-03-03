@@ -1,0 +1,25 @@
+#summary Details of the protocol between debugger and javascript
+
+= Introduction =
+
+This page details the protocol used to communicate between the eclipse debugger and the javascript app.
+
+When I refer to 'debugger' I'm talking about the Eclipse Debugger Plugin.
+When I refer to 'piston' I refer to the javascript app (pistonmonkey in this projects case)
+
+= Details =
+
+It starts in Eclipse:
+  # Menu: Run->Debug Configurations...
+  # Right click on 'Piston Compatible App' on the left and choose 'New'
+  # Give it a name
+  # Browse to where the piston binary is at
+  # Browse to the JavaScript file you want to start debugging in is at
+
+When you hit 'Debug' it will launch the piston app as: pistonmonkey --enableDebugger <js file>
+
+At this point the debugger waits for piston to start up.
+Piston will start up and thanks to the --enableDebugger flag it will listen on port 7580
+
+Once the Debugger is able to connect to the port the Eclipse debugger will continue starting up.
+The Eclipse 
