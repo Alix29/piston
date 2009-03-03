@@ -1,0 +1,14 @@
+#summary Instructions on how to build the source
+
+*WARNING* YOU MUST HAVE ECLIPSE 3.4.1 INSTALLED TO BUILD
+You must also be running Java 6 or higher
+
+First go to the Source tab and do an svn checkout of the source.
+
+There are several folders:
+  * pistondebugger - The actual eclipse plugin code for debugging javascript in eclipse
+  * pistonmonkey - C++ app that embeds tracemonkey and supports being debugged
+  * pistondocs - Piston's available JS API's are documented here. See pub/index.html
+  * sandbox - A collection of assorted stuff
+
+MORE COMING SOON...
