@@ -52,7 +52,7 @@ void debugger_init(const char * address, int port)
 // debugger_main
 void debugger_main(void * arg)
 {
-	debugger_breakpoint_create("/mnt/deck/DevLab/runtime-EclipseApplication/testing/test.js", 4);
+	//debugger_breakpoint_create("/mnt/deck/DevLab/runtime-EclipseApplication/testing/test.js", 4);
 	debuggerLocalAddress = strdup("localhost");
 	debuggerLocalPort = 7570;
 
