@@ -1,36 +1,36 @@
-//var f = new Logan.File("/mnt/deck/DevLab/loganmonkey/sandbox/tmp/test_utf8.txt", { "encoding" : "UTF-8" });
+//var f = new Piston.File("/mnt/deck/DevLab/piston/sandbox/tmp/test_utf8.txt", { "encoding" : "UTF-8" });
 //f.readAll();
 
 var utfString = "聚焦 拉贝日记震撼柏林";
 var asciiString = "abc\t123\nxyz";
 
-//var f = new Logan.File({"path":true});
+//var f = new Piston.File({"path":true});
 //f.isFile();
 
-Logan.Directory.isDirectory("/tmp");
+Piston.Directory.isDirectory("/tmp");
 
 
-//Logan.File.isFile("/dev/null");
+//Piston.File.isFile("/dev/null");
 
 //f.exists();
-//Logan.File.exists("");
-//var f = new Logan.File("/mnt/deck/DevLab/loganmonkey/sandbox/tmp/test_ascii.txt");
+//Piston.File.exists("");
+//var f = new Piston.File("/mnt/deck/DevLab/piston/sandbox/tmp/test_ascii.txt");
 //f.readAll();
 
-//Logan.File.readAll("/mnt/deck/DevLab/loganmonkey/sandbox/tmp/test_utf8.txt");
+//Piston.File.readAll("/mnt/deck/DevLab/piston/sandbox/tmp/test_utf8.txt");
 
-//var f = new Logan.File("/mnt/deck/DevLab/loganmonkey/sandbox/tmp/test_ascii.txt");
+//var f = new Piston.File("/mnt/deck/DevLab/piston/sandbox/tmp/test_ascii.txt");
 
-//Logan.File.size("/mnt/deck/DevLab/loganmonkey/sandbox/tmp/test_asciiz.txt");
+//Piston.File.size("/mnt/deck/DevLab/piston/sandbox/tmp/test_asciiz.txt");
 
-//Logan.File.readAll("/mnt/deck/DevLab/loganmonkey/sandbox/tmp/test_ascii.txt");
-//Logan.File.readAll("/mnt/deck/DevLab/loganmonkey/sandbox/tmp/test_utf8.txt");
+//Piston.File.readAll("/mnt/deck/DevLab/piston/sandbox/tmp/test_ascii.txt");
+//Piston.File.readAll("/mnt/deck/DevLab/piston/sandbox/tmp/test_utf8.txt");
 
-//var f = new Logan.File("/mnt/deck/DevLab/loganmonkey/sandbox/tmp/test_asciiz.txt");
+//var f = new Piston.File("/mnt/deck/DevLab/piston/sandbox/tmp/test_asciiz.txt");
 //f.size();
 
 
-//var u = new Logan.URL("http://google.com/path/index.html?level=47&apple=red");
+//var u = new Piston.URL("http://google.com/path/index.html?level=47&apple=red");
 //u.unsetQueryParameter("level");
 
 //u.toString();
@@ -38,7 +38,7 @@ Logan.Directory.isDirectory("/tmp");
 //"聚焦 拉贝日记震撼柏林"
 
 
-//var l8 = Logan8;
+//var l8 = Piston8;
 //var result = "";
 //var f = new l8.File("/tmp/myfile.txt");
 //if(f.exists())
@@ -62,11 +62,11 @@ Logan.Directory.isDirectory("/tmp");
 
 // Synchronous
 /*
-var resultData = Logan.HTTP.get(url);
-Logan.HTTP.getToFile(url, File)
-Logan.HTTP.put(url, data);
-Logan.HTTP.put(url, File);
-Logan.HTTP.post(url, { "level" : "47" });
+var resultData = Piston.HTTP.get(url);
+Piston.HTTP.getToFile(url, File)
+Piston.HTTP.put(url, data);
+Piston.HTTP.put(url, File);
+Piston.HTTP.post(url, { "level" : "47" });
 
 var h = new HTTP(url);
 h.method = "GET";
@@ -92,7 +92,7 @@ h.perform();
 /*
 var result = "no result";
 
-var f = new Logan.File("/tmp/myfile.txt");
+var f = new Piston.File("/tmp/myfile.txt");
 result = f.size();
 
 delete f;*/
@@ -100,7 +100,7 @@ delete f;*/
 //result = File.size("/tmp/myfile.txt");
 
 /*
-var url = new Logan.URL("http://sembiance:testing@abc.com:7777/some/path/to?verbose=true&sex=1#anchor47");
+var url = new Piston.URL("http://sembiance:testing@abc.com:7777/some/path/to?verbose=true&sex=1#anchor47");
 
 result + "\n" +
 "protocol: " + url.protocol + "\n" +
