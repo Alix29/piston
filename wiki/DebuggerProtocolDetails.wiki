@@ -23,15 +23,17 @@ It starts in Eclipse:
   # Browse to where the piston binary is at
   # Browse to the JavaScript file you want to start debugging in is at
 
-When you hit 'Debug' it will launch the piston app as: pistonmonkey --enableDebugger <js file>
+When you hit 'Debug' it will launch the piston app as:
+
+pistonmonkey --debugMode --debugHost <piston host> --debugPort <piston port> <js file>
 
 At this point the debugger waits for piston to start up.
-Piston will start up and thanks to the --enableDebugger flag it will listen on port 7580
+Piston will start up and will listen on the host and port that it was instructed to when launched. (default 'localhost:7570')
 
-Once the debugger see's that piston is listening on 7580 the debugger will continue starting up.
+Once the debugger see's that piston is listening on 7570 the debugger will continue starting up.
 The debugger will tell piston which breakpoints are already set.
-The debugger listens on port 7570.
-The debugger then tells piston that it's done and debugging can begin.
+It will then tell piston what the host and port is that the debugger itself will be listening on (default 'localhost:7580')
+The debugger then tells piston that it's done and debugging can begin (start).
 
 piston then executes the javascript file it was told to execute.
 When any breakpoints are encountered it will let the debugger know.
@@ -43,7 +45,7 @@ Likewise when a breakpoint is reached and you hit step over, or continue, etc. i
 The protocol the two use to communicate is very basic. It's somewhat REST like.
 
 Each 'message' has a name and a set of values which are POST'ed to a URL.
-http://localhost:7580/messageName
+http://localhost:7570/messageName
 
 Although we use a 'POST' the actual content isn't form URL encoded right now.
 It's just a bunch of \n seperated values (with a trailing \n)
