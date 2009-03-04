@@ -59,6 +59,7 @@ It's just a bunch of \n seperated values (with a trailing \n)
 || step_into || debugger || `<thread num>\n` || Sent by the debugger when the user hits the 'Step Into' button. Piston should now resume execution and when the execution has proceeded 1 step into should send the 'stepped' command back. ||
 || step_over || debugger || `<thread num>\n` || Sent by the debugger when the user hits the 'Step Over' button. Piston should now resume execution and when the execution has proceeded 1 step over should send the 'stepped' command back. ||
 || stepped || piston || `<thread num>\n<filename>\n<line num>\n` || Sent back once piston has reached the final destination of the last step command. The filename and line num should be where we are currently at now. Again, execution is now paused in piston until the debugger tells it what to do next ||
+|| terminated || piston || || Sent by piston when the process is done and is about to exit. ||
 
 As you can see from above, this is about as basic as you can get while still supporting enough stuff to be useful. Notice that things like step return, child variables and watchpoints are not yet supported by the current code base.
 
