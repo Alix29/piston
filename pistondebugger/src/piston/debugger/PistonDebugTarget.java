@@ -70,7 +70,7 @@ public class PistonDebugTarget extends DebugElement implements IDebugTarget
             throw new CoreException( new Status(IStatus.ERROR, PistonActivator.PLUGIN_ID, IStatus.OK, "No javascript path set, failing.", null));
 
         remoteHost = configuration.getAttribute("remoteHost", "localhost");
-        remotePort = Integer.parseInt(configuration.getAttribute("remotePort", "7570"));
+        remotePort = Integer.parseInt(configuration.getAttribute("remotePort", "7580"));
         
         boolean launchApp = Boolean.parseBoolean(configuration.getAttribute("launchApp", "true"));
         
