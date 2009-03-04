@@ -34,17 +34,17 @@ struct event_base * 			debuggerEventBase=0;
 list<struct activeScript *> 	debuggerActiveScripts;
 list<struct activeContext *>	debuggerActiveContexts;
 list<struct breakpoint *>		debuggerBreakpoints;
-const char *					debuggerRemoteAddress;
+char *							debuggerRemoteAddress=0;
 int								debuggerRemotePort;
 int								debuggerContextCounter=0;
 JSStackFrame *					debuggerStopFrame=0;
 
 //////////////////////////////////////////////////////////////////////////
 // debugger_init
-void debugger_init(const char * address, int port)
+void debugger_init()
 {
-	debuggerRemoteAddress = strdup(address);
-	debuggerRemotePort = port;
+	debuggerRemoteAddress = strdup("localhost");
+	debuggerRemotePort = 7580;
 
 	debuggerThread = PR_CreateThread(PR_USER_THREAD, debugger_main, 0, PR_PRIORITY_NORMAL, PR_GLOBAL_THREAD, PR_JOINABLE_THREAD, 0);
 }
@@ -80,6 +80,8 @@ void debugger_main(void * arg)
 // debugger_shutdown
 void debugger_shutdown()
 {
+	debugger_send_message("terminated", "");
+
 	struct timeval now;
 	now.tv_sec = 0;
 	now.tv_usec = 0;
@@ -546,6 +548,14 @@ bool	debugger_received_message(const char * messageName, struct evbuffer * messa
 					free(valueEncoded);
 				}
 			}
+		}
+		else if(!strcmp(messageName, "debugger_host"))
+		{
+			debuggerRemoteAddress=strdup(evbuffer_readline(messageData));
+		}
+		else if(!strcmp(messageName, "debugger_port"))
+		{
+			debuggerRemotePort=atoi(evbuffer_readline(messageData));
 		}
 
 		return true;

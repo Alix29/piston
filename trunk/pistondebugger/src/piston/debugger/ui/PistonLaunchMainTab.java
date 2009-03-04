@@ -29,8 +29,13 @@ public class PistonLaunchMainTab extends AbstractLaunchConfigurationTab
     private Listener dirtyListener;
     private Button jsFileBrowseButton;
     private Text jsFileText;
+    private Button launchAppCheckbox; 
     private Button appBrowseButton;
     private Text appText;
+    private Text remoteHostText;
+    private Text remotePortText;
+    private Text localHostText;
+    private Text localPortText;
     
     @Override
     public void createControl(Composite parent)
@@ -54,6 +59,10 @@ public class PistonLaunchMainTab extends AbstractLaunchConfigurationTab
         };
 
         createAppSection(composite);
+        createRemoteHostSection(composite);
+        createRemotePortSection(composite);
+        createLocalHostSection(composite);
+        createLocalPortSection(composite);
         createJSFileSection(composite);
 
         // hook up event handlers to update the configuration dialog when settings change
@@ -66,7 +75,7 @@ public class PistonLaunchMainTab extends AbstractLaunchConfigurationTab
         Font font = parent.getFont();
 
         Group group = new Group(parent, SWT.FLAT | SWT.SHADOW_IN);
-        group.setText("App");
+        group.setText("Piston Application");
         group.setFont(font);
         group.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false));
         GridLayout groupLayout = new GridLayout();
@@ -74,12 +83,18 @@ public class PistonLaunchMainTab extends AbstractLaunchConfigurationTab
         groupLayout.makeColumnsEqualWidth = false;
         group.setLayout(groupLayout);
         
+        launchAppCheckbox = new Button(group, SWT.CHECK);
+        launchAppCheckbox.setText("Launch local piston application");
+        launchAppCheckbox.setSelection(true);
+        launchAppCheckbox.redraw();
+        launchAppCheckbox.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false, 2, 1));
+
         appText = new Text(group, SWT.SINGLE | SWT.BORDER);
-        appText.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false));
+        appText.setLayoutData(new GridData(SWT.FILL, SWT.BOTTOM, true, false));
 
         appBrowseButton = new Button(group, SWT.PUSH);
         appBrowseButton.setText("Browse...");
-        appBrowseButton.setLayoutData(new GridData(SWT.RIGHT, SWT.TOP, false, false));
+        appBrowseButton.setLayoutData(new GridData(SWT.RIGHT, SWT.BOTTOM, false, false));
 
         appBrowseButton.addSelectionListener(new SelectionAdapter()
         {
@@ -90,6 +105,30 @@ public class PistonLaunchMainTab extends AbstractLaunchConfigurationTab
                     appText.setText(appPath);
             }
         });
+                
+        launchAppCheckbox.addSelectionListener(new SelectionAdapter()
+        {
+            public void widgetSelected(SelectionEvent e)
+            {
+                handleLaunchCheckboxChange();
+                setDirty(true);
+                updateLaunchConfigurationDialog();    
+            }
+        });
+    }
+    
+    private void handleLaunchCheckboxChange()
+    {
+        if(launchAppCheckbox.getSelection())
+        {
+            appText.setEnabled(true);
+            appBrowseButton.setEnabled(true);
+        }
+        else
+        {
+            appText.setEnabled(false);
+            appBrowseButton.setEnabled(false);
+        }
     }
         
     private void createJSFileSection(Composite parent)
@@ -123,6 +162,74 @@ public class PistonLaunchMainTab extends AbstractLaunchConfigurationTab
         });
     }
     
+    private void createRemoteHostSection(Composite parent)
+    {
+        Font font = parent.getFont();
+
+        Group group = new Group(parent, SWT.FLAT | SWT.SHADOW_IN);
+        group.setText("Piston Application Debug Host");
+        group.setFont(font);
+        group.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false));
+        GridLayout groupLayout = new GridLayout();
+        groupLayout.numColumns = 2;
+        groupLayout.makeColumnsEqualWidth = false;
+        group.setLayout(groupLayout);
+
+        remoteHostText = new Text(group, SWT.SINGLE | SWT.BORDER);
+        remoteHostText.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false));
+    }
+    
+    private void createRemotePortSection(Composite parent)
+    {
+        Font font = parent.getFont();
+
+        Group group = new Group(parent, SWT.FLAT | SWT.SHADOW_IN);
+        group.setText("Piston Application Debug Port");
+        group.setFont(font);
+        group.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false));
+        GridLayout groupLayout = new GridLayout();
+        groupLayout.numColumns = 2;
+        groupLayout.makeColumnsEqualWidth = false;
+        group.setLayout(groupLayout);
+
+        remotePortText = new Text(group, SWT.SINGLE | SWT.BORDER);
+        remotePortText.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false));
+    }
+    
+    private void createLocalHostSection(Composite parent)
+    {
+        Font font = parent.getFont();
+
+        Group group = new Group(parent, SWT.FLAT | SWT.SHADOW_IN);
+        group.setText("Debugger Host");
+        group.setFont(font);
+        group.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false));
+        GridLayout groupLayout = new GridLayout();
+        groupLayout.numColumns = 2;
+        groupLayout.makeColumnsEqualWidth = false;
+        group.setLayout(groupLayout);
+
+        localHostText = new Text(group, SWT.SINGLE | SWT.BORDER);
+        localHostText.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false));
+    }
+    
+    private void createLocalPortSection(Composite parent)
+    {
+        Font font = parent.getFont();
+
+        Group group = new Group(parent, SWT.FLAT | SWT.SHADOW_IN);
+        group.setText("Debugger Port");
+        group.setFont(font);
+        group.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false));
+        GridLayout groupLayout = new GridLayout();
+        groupLayout.numColumns = 2;
+        groupLayout.makeColumnsEqualWidth = false;
+        group.setLayout(groupLayout);
+
+        localPortText = new Text(group, SWT.SINGLE | SWT.BORDER);
+        localPortText.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false));
+    }
+    
     private String chooseFilesystemLocation()
     {
         FileDialog dialog = new FileDialog(getShell(), SWT.OPEN);
@@ -138,11 +245,21 @@ public class PistonLaunchMainTab extends AbstractLaunchConfigurationTab
     {
         if (hook)
         {
+            appText.addListener(SWT.Modify, dirtyListener);
             jsFileText.addListener(SWT.Modify, dirtyListener);
+            remoteHostText.addListener(SWT.Modify, dirtyListener);
+            remotePortText.addListener(SWT.Modify, dirtyListener);
+            localHostText.addListener(SWT.Modify, dirtyListener);
+            localPortText.addListener(SWT.Modify, dirtyListener);
         }
         else
         {
+            appText.removeListener(SWT.Modify, dirtyListener);
             jsFileText.removeListener(SWT.Modify, dirtyListener);
+            remoteHostText.removeListener(SWT.Modify, dirtyListener);
+            remotePortText.removeListener(SWT.Modify, dirtyListener);
+            localHostText.removeListener(SWT.Modify, dirtyListener);
+            localPortText.removeListener(SWT.Modify, dirtyListener);
         }
     }
 
@@ -160,6 +277,13 @@ public class PistonLaunchMainTab extends AbstractLaunchConfigurationTab
         {
             appText.setText(configuration.getAttribute("appPath", ""));
             jsFileText.setText(configuration.getAttribute("jsFilePath", ""));
+            remoteHostText.setText(configuration.getAttribute("remoteHost", "localhost"));
+            remotePortText.setText(configuration.getAttribute("remotePort", "7570"));
+            localHostText.setText(configuration.getAttribute("localHost", "localhost"));
+            localPortText.setText(configuration.getAttribute("localPort", "7580"));
+            launchAppCheckbox.setSelection(Boolean.parseBoolean(configuration.getAttribute("launchApp", "true")));
+            launchAppCheckbox.redraw();
+            handleLaunchCheckboxChange();
         }
         catch (CoreException e)
         {
@@ -177,6 +301,11 @@ public class PistonLaunchMainTab extends AbstractLaunchConfigurationTab
     {
         configuration.setAttribute("appPath", appText.getText());
         configuration.setAttribute("jsFilePath", jsFileText.getText());
+        configuration.setAttribute("remoteHost", remoteHostText.getText());
+        configuration.setAttribute("remotePort", remotePortText.getText());
+        configuration.setAttribute("localHost", localHostText.getText());
+        configuration.setAttribute("localPort", localPortText.getText());
+        configuration.setAttribute("launchApp", Boolean.toString(launchAppCheckbox.getSelection()));
     }
 
     @Override
