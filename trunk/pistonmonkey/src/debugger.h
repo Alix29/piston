@@ -1,6 +1,10 @@
 #ifndef PISTONMONKEY_DEBUGGER_H_
 #define PISTONMONKEY_DEBUGGER_H_
 
+extern char *					gDebuggerLocalAddress;
+extern int						gDebuggerLocalPort;
+
+
 struct activeScript
 {
 	JSScript * 	script;

@@ -24,6 +24,10 @@ using namespace std;
 #include "js.h"
 #include "base64util.h"
 
+// globals
+char *							gDebuggerLocalAddress=0;
+int								gDebuggerLocalPort=7570;
+
 // local globals
 PRThread * 						debuggerThread=0;
 struct event_base * 			debuggerEventBase=0;
@@ -32,8 +36,6 @@ list<struct activeContext *>	debuggerActiveContexts;
 list<struct breakpoint *>		debuggerBreakpoints;
 const char *					debuggerRemoteAddress;
 int								debuggerRemotePort;
-const char *					debuggerLocalAddress;
-int								debuggerLocalPort;
 int								debuggerContextCounter=0;
 JSStackFrame *					debuggerStopFrame=0;
 
@@ -53,15 +55,15 @@ void debugger_init(const char * address, int port)
 void debugger_main(void * arg)
 {
 	//debugger_breakpoint_create("/mnt/deck/DevLab/runtime-EclipseApplication/testing/test.js", 4);
-	debuggerLocalAddress = strdup("localhost");
-	debuggerLocalPort = 7570;
+	if(!gDebuggerLocalAddress)
+		gDebuggerLocalAddress = strdup("localhost");
 
 	JS_SetNewScriptHook(gJSRuntime, debugger_new_script_handler, 0);
 	JS_SetDestroyScriptHook(gJSRuntime, debugger_destroy_script_handler, 0);
 
 	debuggerEventBase = event_base_new();
 	struct evhttp * httpd = evhttp_new(debuggerEventBase);
-	evhttp_bind_socket(httpd, debuggerLocalAddress, debuggerLocalPort);
+	evhttp_bind_socket(httpd, gDebuggerLocalAddress, gDebuggerLocalPort);
 
 	evhttp_set_gencb(httpd, debugger_webinterface_handler, 0);
 
@@ -87,7 +89,7 @@ void debugger_shutdown()
 		event_base_loopbreak(debuggerEventBase);
 
 		char localURL[4096];
-		sprintf(localURL, "http://%s:%d/shutdown", debuggerLocalAddress, debuggerLocalPort);
+		sprintf(localURL, "http://%s:%d/shutdown", gDebuggerLocalAddress, gDebuggerLocalPort);
 
 		// This is needed because the loop won't break until the NEXT event, so let's give it the next event
 		CURL * curl = curl_easy_init();
