@@ -42,9 +42,9 @@ public class PistonDebugTarget extends DebugElement implements IDebugTarget
     protected Process                   p;
     protected IProcess                  rp;
     protected PistonHTTPServerThread    httpServerThread;
-    protected String                    remoteAddress;
+    protected String                    remoteHost;
     protected int                       remotePort;
-    protected List<PistonDebugThread>     threads = new ArrayList<PistonDebugThread>();
+    protected List<PistonDebugThread>   threads = new ArrayList<PistonDebugThread>();
     protected ILaunchConfiguration      configuration;
     protected boolean                   terminated=false;
 
@@ -60,10 +60,6 @@ public class PistonDebugTarget extends DebugElement implements IDebugTarget
     
     public void start() throws CoreException
     {
-        // TODO: Find a suitable address to listen on instead of just picking
-        remoteAddress = "localhost";
-        remotePort = 7570;
-        
         // Launch our process
         String appPath = configuration.getAttribute("appPath", "");
         if(appPath.length()<1)
@@ -73,38 +69,50 @@ public class PistonDebugTarget extends DebugElement implements IDebugTarget
         if(jsFilePath.length()<1)
             throw new CoreException( new Status(IStatus.ERROR, PistonActivator.PLUGIN_ID, IStatus.OK, "No javascript path set, failing.", null));
 
-        List<String> launchCommand = new ArrayList<String>();
-        launchCommand.add(appPath);
-        launchCommand.add("--debugMode");
-        launchCommand.add(jsFilePath);
+        remoteHost = configuration.getAttribute("remoteHost", "localhost");
+        remotePort = Integer.parseInt(configuration.getAttribute("remotePort", "7570"));
+        
+        boolean launchApp = Boolean.parseBoolean(configuration.getAttribute("launchApp", "true"));
+        
+        if(launchApp)
+        {
+            List<String> launchCommand = new ArrayList<String>();
+            launchCommand.add(appPath);
+            launchCommand.add("--debugMode");
+            launchCommand.add("--debugHost");
+            launchCommand.add(remoteHost);
+            launchCommand.add("--debugPort");
+            launchCommand.add("" + remotePort);
+            launchCommand.add(jsFilePath);
+                
+            ProcessBuilder pb = new ProcessBuilder(launchCommand);
             
-        ProcessBuilder pb = new ProcessBuilder(launchCommand);
-        
-        String tempWdPath = appPath.substring(0, appPath.lastIndexOf(File.separatorChar));
-        tempWdPath = tempWdPath.substring(0, tempWdPath.lastIndexOf(File.separatorChar));
-        
-        pb.directory(new File(tempWdPath));
-        
-        Map<String, String> processAttributes = new HashMap<String, String>();
-        
-        try
-        {
-            p = pb.start();
-            rp = DebugPlugin.newProcess(launch, p, appPath.indexOf(File.separatorChar)!=-1 ? appPath.substring(appPath.lastIndexOf(File.separatorChar)) : appPath, processAttributes);
+            String tempWdPath = appPath.substring(0, appPath.lastIndexOf(File.separatorChar));
+            tempWdPath = tempWdPath.substring(0, tempWdPath.lastIndexOf(File.separatorChar));
+            
+            pb.directory(new File(tempWdPath));
+            
+            Map<String, String> processAttributes = new HashMap<String, String>();
+            
+            try
+            {
+                p = pb.start();
+                rp = DebugPlugin.newProcess(launch, p, appPath.indexOf(File.separatorChar)!=-1 ? appPath.substring(appPath.lastIndexOf(File.separatorChar)) : appPath, processAttributes);
+            }
+            catch(Exception e)
+            {
+                throw new CoreException( new Status(IStatus.ERROR, PistonActivator.PLUGIN_ID, IStatus.OK, "Failure launching process", e));
+            }
         }
-        catch(Exception e)
-        {
-            throw new CoreException( new Status(IStatus.ERROR, PistonActivator.PLUGIN_ID, IStatus.OK, "Failure launching process", e));
-        }
         
-        // loop until we connect to our launched process
+        // loop until we connect to our piston app
         boolean successfulConnect = false;
         int tries = 0;
-        while(!successfulConnect && tries<100)
+        while(!successfulConnect && tries<1500)
         {
             try
             {
-                Socket sock = new Socket(remoteAddress, remotePort);
+                Socket sock = new Socket(remoteHost, remotePort);
                 successfulConnect = true;
                 sock.close();
             }
@@ -123,11 +131,27 @@ public class PistonDebugTarget extends DebugElement implements IDebugTarget
         }
         
         if(!successfulConnect)
-            throw new CoreException(new Status(IStatus.ERROR, PistonActivator.PLUGIN_ID, IStatus.OK, "Failure to connect to process debugger", new Throwable()));        
+        {
+            try
+            {
+                terminate();
+            }
+            catch(Exception e)
+            {
+                
+            }
+            throw new CoreException(new Status(IStatus.ERROR, PistonActivator.PLUGIN_ID, IStatus.OK, "Failure to connect to process debugger", new Throwable()));
+        }
         
-        httpServerThread = new PistonHTTPServerThread(this, p);
+        String localHost = configuration.getAttribute("localHost", "localhost");
+        String localPort = configuration.getAttribute("localPort", "7580");
+        
+        httpServerThread = new PistonHTTPServerThread(this, localHost, Integer.parseInt(localPort));
         httpServerThread.start();
-        
+
+        sendDebuggerMessage("debugger_host", localHost + "\n");
+        sendDebuggerMessage("debugger_port", localPort + "\n");
+
         // Send any existing breakpoints we have
         IBreakpointManager breakpointManager = DebugPlugin.getDefault().getBreakpointManager();
         IBreakpoint[] breakpoints = breakpointManager.getBreakpoints();
@@ -181,6 +205,17 @@ public class PistonDebugTarget extends DebugElement implements IDebugTarget
             
             thread.fireCreationEvent();
         }
+        else if(messageName.equals("terminated"))
+        {
+            try
+            {
+                terminate();
+            }
+            catch(Exception e)
+            {
+                
+            }
+        }
         
         return false;
     }
@@ -208,7 +243,7 @@ public class PistonDebugTarget extends DebugElement implements IDebugTarget
         try
         {
             byte[] postDataBytes = messageData.getBytes();
-            HttpURLConnection con = (HttpURLConnection)new URL("http://" + remoteAddress + ":" + remotePort + "/" + messageName).openConnection();
+            HttpURLConnection con = (HttpURLConnection)new URL("http://" + remoteHost + ":" + remotePort + "/" + messageName).openConnection();
             con.setRequestMethod("POST");
             con.setRequestProperty("Content-Length", Integer.toString(postDataBytes.length));
             con.setInstanceFollowRedirects(false);

@@ -45,7 +45,7 @@ struct debugStep
 	unsigned int					lastStopLine;
 };
 
-void 			debugger_init(const char * address, int port);
+void 			debugger_init();
 void 			debugger_main(void * arg);
 void 			debugger_shutdown();
 void 			debugger_context_created(JSContext * cx, const char * name);

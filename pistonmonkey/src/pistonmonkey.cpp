@@ -42,7 +42,7 @@ int main(int argc, char ** argv)
     js_init();
 
     if(gDebuggerEnabled)
-    	debugger_init("localhost", 7580);
+    	debugger_init();
 
     while(gDebuggerEnabled && gWaitingForDebugger && gRunning)
     {
@@ -60,6 +60,7 @@ int main(int argc, char ** argv)
 
 			// This should not always happen but either never happen or be optional
 			printf("%s\n", JS_GetStringBytes(JS_ValueToString(cx, executeResult)));
+			fflush(stdout);
 
 			// MAY NEED TO JOIN THREADS HERE IF OTHER THREADS ARE OPEN
 
