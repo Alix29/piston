@@ -75,7 +75,7 @@ public class PistonDebugTarget extends DebugElement implements IDebugTarget
 
         List<String> launchCommand = new ArrayList<String>();
         launchCommand.add(appPath);
-        launchCommand.add("--enableDebugger");
+        launchCommand.add("--debugMode");
         launchCommand.add(jsFilePath);
             
         ProcessBuilder pb = new ProcessBuilder(launchCommand);
